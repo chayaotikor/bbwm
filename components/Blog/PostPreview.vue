@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to="id">
+    <nuxt-link :to="id" class="preview-container">
         <article class="post-preview">
             <div class="preview-thumbnail" :style="{backgroundImage: `url(${thumbnailUrl})`}"></div>
             <div class="preview-content">
@@ -35,10 +35,11 @@ export default {
 </script>
 
 <style scoped>
-a {
-    text-decoration: none;
 
+.preview-container {
+    text-decoration: none;
 }
+
 
 .post-preview {
     border: 1px solid black;
@@ -53,11 +54,11 @@ height: 10rem;
 }
 
 .preview-content{
-border: 1px solid red;
 display: flex;
 flex-flow: column nowrap;
 padding: 2.5%;
-
+background: white;
+color: black;
 }
 
 .preview-title {

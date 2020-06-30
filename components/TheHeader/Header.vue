@@ -29,6 +29,7 @@
   justify-content: flex-end;
   align-items: center;
   border-bottom: 1px solid white;
+  z-index: 100;
 }
 
 .main-nav {
