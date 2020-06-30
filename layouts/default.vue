@@ -1,11 +1,23 @@
 <template>
   <div>
+    <Header />
+    <main class="app-container">
     <Nuxt />
+    </main>
   </div>
 </template>
 
+<script>
+import Header from "@/components/TheHeader/Header"
+export default {
+  components: {
+    Header
+  }
+}
+</script>
+
 <style>
-/* Add Styling Reset Here */
+/* Global Styling */
 /*
 Headers:     
 font-family: 'Dosis', sans-serif;
@@ -50,8 +62,9 @@ html {
   font-size: 62.5%;
 }
 body {
-	line-height: 1;
+line-height: 1;
 font-family: 'Lato', sans-serif;
+background-color: black;
 }
 ol, ul {
 	list-style: none;
@@ -67,5 +80,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+.app-container {
+  margin-top: 8rem;
 }
 </style>
