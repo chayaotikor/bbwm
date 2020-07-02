@@ -65,6 +65,7 @@ body {
 line-height: 1;
 font-family: 'Lato', sans-serif;
 background-color: black;
+overflow: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -82,7 +83,5 @@ table {
 	border-spacing: 0;
 }
 
-.app-container {
-  margin-top: 8rem;
-}
+
 </style>
