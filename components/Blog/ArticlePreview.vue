@@ -3,11 +3,11 @@
           <div class="line-point">
             <i class="right-arrow" />
             <span class='line'>
-            <h2 class="date">{{date}} </h2>
+            <h2 class="date">{{date}}</h2>
             </span>
             <span class="dot" />
           </div>
-          <nuxt-link tag='article' :to="id" class="preview-container">
+          <nuxt-link tag='article' :to="`/posts/${id}`" class="preview-container">
               <div class="preview-thumbnail" :style="{backgroundImage: `url(${thumbnailUrl})`}"></div>
               <div class="preview-content">
                 <h1 class="preview-title">{{title}}</h1>
@@ -56,7 +56,7 @@ export default {
 
 
 .line-point {
-  width: 40%;
+  width: 47.5%;
   height: 16px;
   display: flex;
   align-self: flex-end;
@@ -65,7 +65,7 @@ export default {
   justify-content: flex-end;
   position: absolute;
   top: -8px;
-  left: -8px;
+  left: -6px;
 }
 .line {
   border: 1px solid white;
@@ -108,7 +108,7 @@ export default {
   height: 45vh;
   border: 1px solid white;
   display: flex;
-  margin: 2.5% 5%;
+  margin: .5% 2% 2%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -119,7 +119,7 @@ export default {
 
 
 .preview-thumbnail {
-  background-position: center;
+  background-position:top;
   background-size: cover;
   width: 100%;
   border-top-left-radius: 10px;
