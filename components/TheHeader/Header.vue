@@ -33,6 +33,7 @@
 }
 
 .main-nav {
+    height: 6rem;
 width: 100%;
 display:flex;
 flex-flow: row nowrap;
