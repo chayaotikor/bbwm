@@ -1,7 +1,5 @@
 <template>
-  
     <Carousel />
-
 </template>
 
 <script>
