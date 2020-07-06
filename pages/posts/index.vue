@@ -1,19 +1,23 @@
 <template>
   <div class="timeline-container">
-    <!-- <section class="left-container">
+    <section class="left-container">
       <PodcastPreview  v-for="post in posts" :key="post.id" :title="post.title"
           :excerpt="post.excerpt"
           :thumbnailUrl="post.thumbnailUrl"
           :date="post.date"
           :id="post.id"/>
-    </section> -->
+    </section>
     <span class="middle-line" />
     <section class="right-container">
-      <ArticlePreview  v-for="post in posts" :key="post.id" :title="post.title"
-          :excerpt="post.excerpt"
-          :thumbnailUrl="post.thumbnailUrl"
-          :date="post.date"
-          :id="post.id"/>
+      <ArticlePreview
+        v-for="post in posts"
+        :key="post.id"
+        :title="post.title"
+        :excerpt="post.excerpt"
+        :thumbnailUrl="post.thumbnailUrl"
+        :date="post.date"
+        :id="post.id"
+      />
     </section>
   </div>
 </template>
@@ -21,34 +25,34 @@
 <script>
 import ArticlePreview from "@/components/Blog/ArticlePreview"
 import PodcastPreview from "@/components/Blog/PodcastPreview"
-import image1 from '@/assets/images/image1.jpg'
-import image2 from '@/assets/images/image2.jpg'
+import moment from 'moment'
 
 export default {
   components: {
         ArticlePreview,
         PodcastPreview
     },
-    data(){
-        return{
-            posts: [
-                {
-                    id: 1,
-                    date: "June 26, 2020",
-                    thumbnailUrl: image1,
-                    title: "Article Title",
-                    excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-                },
-                             {
-                    id: 2,
-                    date: "June 25, 2020",
-                    thumbnailUrl: image2,
-                    title: "Article Title",
-                    excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-                }
-            ]
-        }
-    }
+  asyncData(context){
+    return context.app.$storyapi
+    .get(
+      'cdn/stories', 
+      {version: 'draft',
+        starts_with:'blog/post-previews'
+    })
+    .then(res => {
+      return {
+        posts: res.data.stories.map(post => {
+          return {        
+            id: post.id,
+            title: post.content.title,
+            excerpt: post.content.excerpt,
+            thumbnailUrl: post.content.thumbnailUrl.filename,
+            date: moment(post.created_at).format('MMMM DD[,] YYYY')
+          };
+        })
+      }
+    })
+  }
 }
 </script>
 
@@ -58,7 +62,7 @@ export default {
   display: flex;
   min-height: 100vh;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: flex-start;
   overflow-y: scroll;
   position: relative;
@@ -66,7 +70,6 @@ export default {
 }
 .middle-line {
   position: absolute;
- left: 10%;
   min-height: 100%;
   width: 3px;
   background-color: white;
@@ -82,12 +85,11 @@ export default {
 }
 
 .right-container {
-  width: 80%;
+  width: 50%;
   min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
 }
-
 </style>

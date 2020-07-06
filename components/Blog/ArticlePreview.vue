@@ -56,7 +56,7 @@ export default {
 
 
 .line-point {
-  width: 47.5%;
+  width: 40%;
   height: 16px;
   display: flex;
   align-self: flex-end;
@@ -65,7 +65,7 @@ export default {
   justify-content: flex-end;
   position: absolute;
   top: -8px;
-  left: -6px;
+  left: -8px;
 }
 .line {
   border: 1px solid white;
@@ -108,7 +108,7 @@ export default {
   height: 45vh;
   border: 1px solid white;
   display: flex;
-  margin: .5% 2% 2%;
+  margin: 2.5% 5%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -116,15 +116,13 @@ export default {
   cursor: pointer;
   align-self: flex-end;
 }
-
-
 .preview-thumbnail {
   background-position:top;
   background-size: cover;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 75%;
+  height: 60%;
 }
 
 .preview-content {
@@ -132,7 +130,7 @@ export default {
   flex-flow: column nowrap;
   padding: 2.5%;
   width: 100%;
-  height:25%;
+  height:40%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: white;
