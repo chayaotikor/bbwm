@@ -1,14 +1,13 @@
 <template>
-
-    <section
-      class="slide-container"
-      :style="{ backgroundImage: `url(${image})` }"
-    >
-      <section class="bottom-container">
-        <h1 class="bottom-heading">{{heading }}</h1>
-        <p class="bottom-text">{{text }}</p>
-      </section>
+  <section
+    class="slide-container"
+    :style="{ backgroundImage: `url(${image})` }"
+  >
+    <section class="bottom-container">
+      <h1 class="bottom-heading">{{ heading }}</h1>
+      <p class="bottom-text">{{ text }}</p>
     </section>
+  </section>
 </template>
 <script>
 export default {
@@ -19,44 +18,45 @@ export default {
     },
     image: {
       type: String,
-      required: true
+      required: true,
     },
     text: {
-      type:String,
-      required:true
-      }
+      type: String,
+      required: true,
+    },
   },
 }
 </script>
 
 <style scoped>
-
 .slide-container {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 6.5rem);
   background-position: top;
   background-size: cover;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .bottom-container {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  padding: 2%;
+    padding: 2rem;
+
   color: black;
   background: white;
   width: 100%;
+  height:150px;
 }
 .bottom-heading {
   font-size: 3.2rem;
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
   text-decoration: underline;
-  padding-bottom: 2.5%;
+  padding-bottom: 2rem;
 }
 
 .bottom-text {

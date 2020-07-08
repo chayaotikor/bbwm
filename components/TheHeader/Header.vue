@@ -2,7 +2,7 @@
   <header class="main-header">
     <nav class="main-nav">
       <ul class="nav-links">
-        <nuxt-link tag="li" to='/' class="nav-link">
+        <nuxt-link tag="li" to='/home' class="nav-link">
           <a>Home</a>
         </nuxt-link>
         <nuxt-link tag="li" to="/posts" class="nav-link">
