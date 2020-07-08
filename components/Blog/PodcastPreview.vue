@@ -8,7 +8,7 @@
             <span class="dot" />
           </div>
           <nuxt-link tag='article' :to="id" class="preview-container">
-              <div class="preview-thumbnail" :style="{backgroundImage: `url(${thumbnailUrl})`}"></div>
+              <div class="preview-thumbnail" :style="{backgroundImage: `url(${image})`}"></div>
               <div class="preview-content">
                 <h1 class="preview-title">{{title}}</h1>
                 <p class="preview-text">{{excerpt}}</p>
@@ -28,7 +28,7 @@ export default {
             type: String,
             required: true
         },
-        thumbnailUrl: {
+        image: {
             type: String,
             required: true
         },

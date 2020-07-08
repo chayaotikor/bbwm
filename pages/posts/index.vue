@@ -1,11 +1,15 @@
 <template>
   <div class="timeline-container">
     <section class="left-container">
-      <PodcastPreview  v-for="post in posts" :key="post.id" :title="post.title"
-          :excerpt="post.excerpt"
-          :thumbnailUrl="post.thumbnailUrl"
-          :date="post.date"
-          :id="post.id"/>
+      <PodcastPreview
+        v-for="post in posts"
+        :key="post.id"
+        :title="post.title"
+        :excerpt="post.excerpt"
+        :image="post.image"
+        :date="post.date"
+        :id="post.id"
+      />
     </section>
     <span class="middle-line" />
     <section class="right-container">
@@ -14,7 +18,7 @@
         :key="post.id"
         :title="post.title"
         :excerpt="post.excerpt"
-        :thumbnailUrl="post.thumbnailUrl"
+        :image="post.image"
         :date="post.date"
         :id="post.id"
       />
@@ -23,50 +27,50 @@
 </template>
 
 <script>
-import ArticlePreview from "@/components/Blog/ArticlePreview"
-import PodcastPreview from "@/components/Blog/PodcastPreview"
+import ArticlePreview from '@/components/Blog/ArticlePreview'
+import PodcastPreview from '@/components/Blog/PodcastPreview'
 import moment from 'moment'
 
 export default {
   components: {
-        ArticlePreview,
-        PodcastPreview
-    },
-  asyncData(context){
+    ArticlePreview,
+    PodcastPreview,
+  },
+  asyncData(context) {
     return context.app.$storyapi
-    .get(
-      'cdn/stories', 
-      {version: 'draft',
-        starts_with:'blog/post-previews'
-    })
-    .then(res => {
-      return {
-        posts: res.data.stories.map(post => {
-          return {        
-            id: post.id,
-            title: post.content.title,
-            excerpt: post.content.excerpt,
-            thumbnailUrl: post.content.thumbnailUrl.filename,
-            date: moment(post.created_at).format('MMMM DD[,] YYYY')
-          };
-        })
-      }
-    })
-  }
+      .get('cdn/stories', {
+        version: 'draft',
+        starts_with: 'blog/posts',
+      })
+      .then((res) => {
+        return {
+          posts: res.data.stories.map((post) => {
+            return {
+              id: post.id,
+              title: post.content.title,
+              excerpt: post.content.excerpt,
+              image: post.content.image.filename,
+              date: moment(post.created_at).format('MMMM DD[,] YYYY'),
+            }
+          }),
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  },
 }
 </script>
-
 
 <style scoped>
 .timeline-container {
   display: flex;
-  min-height: 100vh;
+  padding-top: 2rem;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: flex-start;
-  overflow-y: scroll;
   position: relative;
-  padding-top: 8rem;
+  overflow-y: clip;
 }
 .middle-line {
   position: absolute;
