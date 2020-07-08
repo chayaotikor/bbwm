@@ -1,46 +1,58 @@
 <template>
-     <div class="post-container">
-          <div class="line-point">
-            <i class="left-arrow" />
-            <span class='line'>
-            <h2 class="date">{{date}} </h2>
-            </span>
-            <span class="dot" />
-          </div>
-          <nuxt-link tag='article' :to="id" class="preview-container">
-              <div class="preview-thumbnail" :style="{backgroundImage: `url(${image})`}"></div>
-              <div class="preview-content">
-                <h1 class="preview-title">{{title}}</h1>
-                <p class="preview-text">{{excerpt}}</p>
-              </div>
-          </nuxt-link>
-        </div>
+  <div class="post-container">
+    <div class="line-point">
+      <i class="left-arrow" />
+      <span class="line">
+        <h2 class="date">{{ date }}</h2>
+      </span>
+      <span class="dot" />
+    </div>
+    <button class="podcast-container">
+      <div
+        class="podcast-thumbnail"
+        :style="{
+          backgroundImage: `url(${require('../../assets/images/podcast.jpg')})`,
+        }"
+      >
+        <h1 class="podcast-title">{{ title }}</h1>
+      </div>
+      <div class="bottom-container">
+        <span
+          class="play-button"
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/playbutton.svg')})`,
+          }"
+        />
+        <span class="play-line" />
+      </div>
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-        title: {
-            type: String,
-            required: true
-        },
-        excerpt: {
-            type: String,
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        },
-        id: {
-            type: Number,
-            required: true
-        },
-        date: {
-            type: String,
-            required: true
-        },
-    }
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    excerpt: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: Number,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
+  },
 }
 </script>
 
@@ -54,9 +66,8 @@ export default {
   position: relative;
 }
 
-
 .line-point {
-  width: 40%;
+  width: 100%;
   height: 16px;
   display: flex;
   align-self: flex-end;
@@ -93,7 +104,6 @@ export default {
   -webkit-transform: rotate(135deg);
 }
 
-
 .dot {
   height: 16px;
   width: 16px;
@@ -103,48 +113,64 @@ export default {
   margin: 0;
   z-index: 1;
 }
-.preview-container {
+.podcast-container {
   text-decoration: none;
-  width: 50%;
-  height: 45vh;
+  width: 70%;
+  height: 25vh;
   border: 1px solid white;
   display: flex;
-  margin: 2.5% 5%;
+  margin: 2.5% 5% 5%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
   align-self: flex-start;
+  padding: 0;
 }
 
-.preview-thumbnail {
+.podcast-thumbnail {
   background-position: center;
   background-size: cover;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 75%;
-}
-
-.preview-content {
+  height: 70%;
   display: flex;
   flex-flow: column nowrap;
-  padding: 2.5%;
+  justify-content: center;
+}
+
+.podcast-title {
+  font-size: 2.4rem;
+  color: white;
+}
+
+.bottom-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 2.5%;
   width: 100%;
-  height:25%;
+  height: 30%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: white;
-  color: black;
+  background: black;
+}
+.play-button{
+  background-color: none;
+  height: 24px;
+  width: 24px;
+  background-position: center;
+  background-size: cover;
 }
 
-.preview-title {
-  font-size: 1.8rem;
-}
-
-.preview-text {
-  font-size: 1.4rem;
+.play-line {
+height: 2px;
+width: 80%;
+background-color: white;
+  
 }
 
 </style>

@@ -56,7 +56,7 @@ export default {
 
 
 .line-point {
-  width: 40%;
+  width: 100%;
   height: 16px;
   display: flex;
   align-self: flex-end;
@@ -104,11 +104,11 @@ export default {
 }
 .preview-container {
   text-decoration: none;
-  width: 50%;
-  height: 45vh;
+  width: 70%;
+  height: 40vh;
   border: 1px solid white;
   display: flex;
-  margin: 2.5% 5%;
+  margin: 2.5% 5% 5%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
