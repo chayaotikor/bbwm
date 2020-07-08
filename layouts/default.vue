@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <Header />
     <main class="app-container">
     <Nuxt />
@@ -65,7 +65,8 @@ body {
 line-height: 1;
 font-family: 'Lato', sans-serif;
 background-color: black;
-overflow: hidden;
+min-height: 100vh;
+padding: 1px;
 }
 ol, ul {
 	list-style: none;
@@ -82,6 +83,11 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.app-container{
+  margin-top:6rem;
+}
+
 
 
 </style>
