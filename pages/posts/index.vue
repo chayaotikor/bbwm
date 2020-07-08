@@ -2,13 +2,12 @@
   <div class="timeline-container">
     <section class="left-container">
       <PodcastPreview
-        v-for="post in posts"
-        :key="post.id"
-        :title="post.title"
-        :excerpt="post.excerpt"
-        :image="post.image"
-        :date="post.date"
-        :id="post.id"
+        v-for="podcast in podcasts"
+        :key="podcast.id"
+        :title="podcast.title"
+        :date="podcast.date"
+        :id="podcast.id"
+        :link="podcast.link"
       />
     </section>
     <span class="middle-line" />
@@ -36,28 +35,34 @@ export default {
     ArticlePreview,
     PodcastPreview,
   },
-  asyncData(context) {
-    return context.app.$storyapi
-      .get('cdn/stories', {
-        version: 'draft',
-        starts_with: 'blog/posts',
-      })
-      .then((res) => {
-        return {
-          posts: res.data.stories.map((post) => {
-            return {
-              id: post.id,
-              title: post.content.title,
-              excerpt: post.content.excerpt,
-              image: post.content.image.filename,
-              date: moment(post.created_at).format('MMMM DD[,] YYYY'),
-            }
-          }),
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+  async asyncData(context) {
+    const postData = await context.app.$storyapi.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'blog/posts',
+    })
+    const podcastData = await context.app.$storyapi.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'blog/podcasts',
+    })
+    const podcasts = podcastData.data.stories.map((podcast) => {
+      return {
+        id: podcast.id,
+        title: podcast.content.title,
+        link: podcast.content.link,
+        date: moment(podcast.created_at).format('MMMM DD[,] YYYY'),
+      }
+    })
+    const posts = postData.data.stories.map((post) => {
+      return {
+        id: post.id,
+        title: post.content.title,
+        excerpt: post.content.excerpt,
+        image: post.content.image.filename,
+        date: moment(post.created_at).format('MMMM DD[,] YYYY'),
+      }
+    })
+
+    return { posts, podcasts }
   },
 }
 </script>

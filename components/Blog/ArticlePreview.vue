@@ -3,7 +3,7 @@
           <div class="line-point">
             <i class="right-arrow" />
             <span class='line'>
-            <h2 class="date">{{date}}</h2>
+            <!-- <h2 class="date">{{date}}</h2> -->
             </span>
             <span class="dot" />
           </div>

@@ -3,7 +3,7 @@
     <div class="line-point">
       <i class="left-arrow" />
       <span class="line">
-        <h2 class="date">{{ date }}</h2>
+        <!-- <h2 class="date">{{ date }}</h2> -->
       </span>
       <span class="dot" />
     </div>
@@ -36,22 +36,11 @@ export default {
       type: String,
       required: true,
     },
-    excerpt: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: Number,
-      required: true,
-    },
     date: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
+
   },
 }
 </script>
@@ -142,8 +131,9 @@ export default {
 }
 
 .podcast-title {
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: white;
+  margin: 0 2rem;
 }
 
 .bottom-container {

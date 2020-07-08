@@ -1,87 +1,35 @@
 <template>
-  <div class="carousel-container">
-   <span class="pagination-container">
-      <!-- <button 
-        v-for="slide in slides"
-        :key="slide.id"
-        @click="setCurrentSlide(slide.id)"
-        class="pagination-dot"
-        :style="[
-          currentSlide === 1
-            ? { 'background-color': 'wheat' }
-            : { 'background-color': 'white' },
-        ]"
-      ></button>-->
-    </span>
-    <!-- <section 
-      class="slide-container"
-      v-for="slide in slides"
-      :key="slide.id"
 
-      :style="{ backgroundImage: `url(${slide.image})` }"
+    <section
+      class="slide-container"
+      :style="{ backgroundImage: `url(${image})` }"
     >
       <section class="bottom-container">
-        <h1 class="bottom-heading">{{ slide.heading }}</h1>
-        <p class="bottom-text">{{ slide.text }}</p>
+        <h1 class="bottom-heading">{{heading }}</h1>
+        <p class="bottom-text">{{text }}</p>
       </section>
-    </section> -->
-  </div>
+    </section>
 </template>
-
 <script>
 export default {
-  asyncData(context) {
-    console.log('sanity',context)
-    return context.app.$storyapi
-      .get('cdn/stories', {
-        version: 'draft',
-      })
-      .then((res) => {
-        console.log("res",res)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+  props: {
+    heading: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    text: {
+      type:String,
+      required:true
+      }
   },
 }
 </script>
 
 <style scoped>
-.carousel-container {
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 0 auto;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 6rem;
-  height: calc(100vh - 6rem);
-  border: 1px solid red;
-}
-
-.pagination-container {
-  display: flex;
-  width: 100px;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  top: 1rem;
-  border: 1px solid red;
-}
-
-.pagination-dot {
-  border-radius: 50%;
-  height: 16px;
-  width: 16px;
-  margin: 2.5%;
-  cursor: pointer;
-  z-index: 50;
-  border: none;
-}
 
 .slide-container {
   width: 100%;
