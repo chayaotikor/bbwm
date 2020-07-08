@@ -69,22 +69,23 @@ export default {
 .about-container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
   margin-top: 6rem;
   margin-bottom: 0;
   background-color: black;
 }
 .summary-container {
-  padding: 2rem 2rem 0;
+  padding: 2rem 4rem 0;
   background-color: black;
-  width: 80%;
+  width: 65%;
   justify-self: flex-end;
   color: white;
+  height: calc(100vh - 12.5rem);
   border-left: 1px solid white;
   border-right: 1px solid white;
   border-bottom: 1px solid white;
-
+  position: relative;
 }
 .profile-name {
   font-size: 4rem;
@@ -94,6 +95,7 @@ export default {
   color: black;
   background-color: white;
   width: 100%;
+  height: 6rem;
 }
 .profile-photo {
   height: auto;
@@ -104,9 +106,9 @@ export default {
 }
 .profile-summary {
   font-family: 'Lato', sans-serif;
-  font-size: 2rem;
+  font-size: 2.4rem;
   width: 100%;
-  line-height: 1.2;
+  line-height: 1.5;
   text-align: justify;
 }
 .social-media-container {
@@ -118,6 +120,9 @@ export default {
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .social-media-icon {
