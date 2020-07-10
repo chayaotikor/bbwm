@@ -65,5 +65,25 @@ align-items: center;
  .nav-link a:hover, .nav-link a:active, .nav-link.nuxt-link-exact-active a {
   color: wheat;
 }
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 810px) {
+
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+
+}
 
 </style>

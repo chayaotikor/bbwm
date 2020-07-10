@@ -3,17 +3,20 @@
     <section class="left-container">
       <PodcastPreview
         v-for="podcast in podcasts"
+        v-editable="podcast.blok"
         :key="podcast.id"
         :title="podcast.title"
         :date="podcast.date"
         :id="podcast.id"
         :link="podcast.link"
+        @click.native="currentVid(podcast.link)"
       />
     </section>
     <span class="middle-line" />
     <section class="right-container">
       <ArticlePreview
         v-for="post in posts"
+        v-editable="post.blok"
         :key="post.id"
         :title="post.title"
         :excerpt="post.excerpt"
@@ -47,6 +50,7 @@ export default {
     const podcasts = podcastData.data.stories.map((podcast) => {
       return {
         id: podcast.id,
+        blok: podcast.content,
         title: podcast.content.title,
         link: podcast.content.link,
         date: moment(podcast.created_at).format('MMMM DD[,] YYYY'),
@@ -55,14 +59,24 @@ export default {
     const posts = postData.data.stories.map((post) => {
       return {
         id: post.id,
+        blok: post.content,
         title: post.content.title,
         excerpt: post.content.excerpt,
         image: post.content.image.filename,
         date: moment(post.created_at).format('MMMM DD[,] YYYY'),
       }
     })
-
     return { posts, podcasts }
+  },
+    methods: {
+    currentVid(link) {
+        window.open(link, "_blank")
+    },
+  },
+  mounted() {
+    this.$storybridge.on('change', () => {
+      location.reload(true)
+    })
   },
 }
 </script>
@@ -84,6 +98,17 @@ export default {
   background-color: white;
 }
 
+.video-modal {
+  position: absolute;
+  z-index: 100;
+  border: 1px solid red;
+  top: 50%;
+  width: 640px;
+  height: 264px;
+  color:red;
+  background-color: white;
+}
+
 .left-container {
   width: 50%;
   height: 100vh;
@@ -100,5 +125,26 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+}
+
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 810px) {
+
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+
 }
 </style>

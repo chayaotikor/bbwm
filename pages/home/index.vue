@@ -1,6 +1,6 @@
 <template>
-      <div class="carousel-container">
-       <span class="pagination-container">
+  <div class="carousel-container">
+    <span class="pagination-container">
       <button
         v-for="slide in slides"
         :key="slide.index"
@@ -13,48 +13,53 @@
         ]"
       ></button>
     </span>
-    <Carousel 
-        v-for="slide in slides"
-        :key="slide.id"
-        :heading="slide.heading"
-        :image="slide.image"
-        :text="slide.text"
-        v-show="slide.index === currentSlide"
+    <Carousel
+      v-for="slide in slides"
+      v-editable="slide.blok"
+      :key="slide.id"
+      :heading="slide.heading"
+      :image="slide.image"
+      :text="slide.text"
+      v-show="slide.index === currentSlide"
     />
-    </div>
+  </div>
 </template>
 
 <script>
 import Carousel from '@/components/Landing/Carousel'
 export default {
-    async asyncData(context){
-    const slideData = await context.app.$storyapi.get(
-      'cdn/stories',
-      {version: 'draft',
-        starts_with:'carousel/slides'
+  async asyncData(context) {
+    const slideData = await context.app.$storyapi.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'carousel/slides',
     })
 
     const slides = slideData.data.stories.map((slide, index) => {
-          return {
-            id: slide.id,
-            index: index,
-            heading: slide.content.heading,
-            text:slide.content.text,
-            image: slide.content.image.filename,
-          };
+      return {
+        id: slide.id,
+        blok: slide.content,
+        index: index,
+        heading: slide.content.heading,
+        text: slide.content.text,
+        image: slide.content.image.filename,
+      }
     })
 
     const currentSlide = 0
-    return {slides, currentSlide}
+    return { slides, currentSlide }
   },
-   methods: {
-        setCurrentSlide(id){
-           this.currentSlide = id
-       }
-   }
+  methods: {
+    setCurrentSlide(id) {
+      this.currentSlide = id
+    },
+  },
+  mounted() {
+    this.$storybridge.on('change', () => {
+      location.reload(true)
+    })
+  },
 }
 </script>
-
 
 <style scoped>
 .carousel-container {
@@ -62,6 +67,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin: 6rem 0 0;
+  height: calc(100vh);
   position: relative;
   justify-content: center;
   align-items: center;
@@ -76,7 +82,7 @@ export default {
   align-items: center;
   position: absolute;
   top: 1rem;
-  z-index: 100;
+  z-index: 9;
 }
 
 .pagination-dot {
@@ -88,6 +94,28 @@ export default {
   border: none;
 }
 
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large Phone Landscape */
+@media only screen and (min-width: 810px) {
 
 
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 1024px) {
+
+}
+/* desktop Landscape */
+@media only screen and (min-width: 1280px) {
+
+}
 </style>

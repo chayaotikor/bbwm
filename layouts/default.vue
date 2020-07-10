@@ -83,10 +83,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+p{
+  font-family: 'Lato', sans-serif; 
+}
+h1{
+  font-family: 'Dosis', sans-serif;
+}
 
 .app-container{
-  margin-top:6rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
+
 
 
 

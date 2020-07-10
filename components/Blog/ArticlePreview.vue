@@ -9,9 +9,9 @@
           </div>
           <nuxt-link tag='article' :to="`/posts/${id}`" class="preview-container">
               <div class="preview-thumbnail" :style="{backgroundImage: `url(${image})`}"></div>
-              <div class="preview-content">
+              <div class="preview-content" >
                 <h1 class="preview-title">{{title}}</h1>
-                <p class="preview-text">{{excerpt}}</p>
+                <div class="preview-text" v-html="richtext">{{excerpt}}</div>
               </div>
           </nuxt-link>
         </div>
@@ -25,7 +25,7 @@ export default {
             required: true
         },
         excerpt: {
-            type: String,
+            type: Object,
             required: true
         },
         image: {
@@ -40,7 +40,12 @@ export default {
             type: String,
             required: true
         },
+    },
+       computed: {
+    richtext() {
+      return this.excerpt ? this.$storyapi.richTextResolver.render(this.excerpt) : ''
     }
+  }
 }
 </script>
 
@@ -143,6 +148,27 @@ export default {
 
 .preview-text {
   font-size: 1.4rem;
+}
+
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 810px) {
+
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+
 }
 
 </style>
