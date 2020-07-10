@@ -1,5 +1,5 @@
 <template>
-  <div class="post-container">
+  <div class="post-container" >
     <div class="line-point">
       <i class="left-arrow" />
       <span class="line">

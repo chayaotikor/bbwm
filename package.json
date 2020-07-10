@@ -10,16 +10,21 @@
     "serve": "nuxt serve"
   },
   "dependencies": {
+    "@marvr/storyblok-rich-text-types": "^2.0.1",
+    "@marvr/storyblok-rich-text-vue-renderer": "^2.0.1",
     "@nuxt/content": "^1.3.2",
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@vue/composition-api": "^1.0.0-beta.3",
     "moment": "^2.27.0",
     "nuxt": "^2.13.0",
-    "storyblok-nuxt": "^1.2.0"
+    "storyblok-nuxt": "^1.2.0",
+    "videojs-youtube": "^2.6.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "video.js": "^7.8.4"
   }
 }

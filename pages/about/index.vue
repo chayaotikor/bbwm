@@ -1,9 +1,9 @@
 <template>
-  <section class="about-container">
+  <section class="about-container" v-editable="blok">
     <h1 class="profile-name">{{ name }}</h1>
     <div class="summary-container">  
       <img class="profile-photo" :src="photo" />
-      <p class="profile-summary">{{ summary }}</p>
+      <p v-html="richtext" class="profile-summary">{{ summary }}</p>
       <div class="social-media-container">
         <a
           class="social-media-icon"
@@ -52,6 +52,7 @@ export default {
       .get('cdn/stories/about', { version: 'draft' })
       .then((res) => {
         return {
+          blok: res.data.story.content,
           name: res.data.story.content.name,
           photo: res.data.story.content.photo.filename,
           summary: res.data.story.content.summary,
@@ -62,6 +63,17 @@ export default {
         }
       })
   },
+     computed: {
+    richtext() {
+      return this.summary ? this.$storyapi.richTextResolver.render(this.summary) : ''
+    }
+  },
+    mounted() {
+    this.$storybridge.on('change', () => {
+      location.reload(true)
+    })
+  },
+
 }
 </script>
 
