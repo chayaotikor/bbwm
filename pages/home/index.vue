@@ -67,6 +67,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin: 6rem 0 0;
+  height: calc(100vh);
   position: relative;
   justify-content: center;
   align-items: center;
@@ -81,7 +82,7 @@ export default {
   align-items: center;
   position: absolute;
   top: 1rem;
-  z-index: 100;
+  z-index: 9;
 }
 
 .pagination-dot {
@@ -91,5 +92,30 @@ export default {
   margin: 2.5%;
   cursor: pointer;
   border: none;
+}
+
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large Phone Landscape */
+@media only screen and (min-width: 810px) {
+
+
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 1024px) {
+
+}
+/* desktop Landscape */
+@media only screen and (min-width: 1280px) {
+
 }
 </style>

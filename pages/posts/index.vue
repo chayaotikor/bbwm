@@ -126,4 +126,25 @@ export default {
   justify-content: flex-start;
   align-items: center;
 }
+
+/* Mobile Landscape */
+@media only screen and (min-width: 576px) {
+
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 810px) {
+
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+
+}
 </style>

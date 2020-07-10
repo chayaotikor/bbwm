@@ -43,8 +43,10 @@ export default {
 </script>
 <style scoped>
 .post-container {
+  border-bottom: 1px solid white;
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
   color: white;
   margin: 6rem 0;
 }
@@ -53,6 +55,7 @@ export default {
   height: 400px;
   background-size: cover;
   background-position: center;
+  border-bottom: 1px solid white;
 }
 
 .image-credit {
@@ -71,6 +74,16 @@ export default {
   padding: 2rem;
   font-size: 1.8rem;
   line-height: 1.2;
+  text-align: justify;
 }
+/* Large Laptops */
+@media only screen and (min-width: 576px) {
+.post-text{
+  width: 75%;
+  
+}
+}
+
+
 
 </style>

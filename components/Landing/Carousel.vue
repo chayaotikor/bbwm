@@ -31,9 +31,10 @@ export default {
 <style scoped>
 .slide-container {
   width: 100%;
-  height: calc(100vh - 6.5rem);
+  height: 100vh;
   background-position: top;
-  background-size: cover;
+  background-size:cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
@@ -49,19 +50,30 @@ export default {
   color: black;
   background: white;
   width: 100%;
-  height:150px;
+  height:100px;
 }
 .bottom-heading {
-  font-size: 3.2rem;
+  font-size: 2.6rem;
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
   text-decoration: underline;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .bottom-text {
-  font-size: 2.4rem;
+  font-size: 1.4rem;
   font-family: 'Lato', sans-serif;
   text-align: left;
+}
+
+
+/* desktop Landscape */
+@media only screen and (min-width: 1280px) {
+.bottom-heading{
+font-size: 3.2rem;
+}
+.bottom-text{
+  font-size: 2.4rem;
+}
 }
 </style>
