@@ -2,10 +2,12 @@
   <header class="main-header">
     <nav class="main-nav">
       <div class="site-logo">
-        <span :style="{
-          backgroundImage: `url(${require('../../assets/images/icon.png')})`,
-        }" />
-      <h1 >Beyond Boundaries | Without Measure</h1>
+        <span
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/icon.png')})`,
+          }"
+        />
+        <h1>Beyond Boundaries | Without Measure</h1>
       </div>
       <ul class="nav-links">
         <nuxt-link tag="li" exact to="/" class="nav-link">
@@ -48,7 +50,7 @@
 }
 
 .nav-links {
-  width: 50%;
+  width: 40%;
   display: flex;
   padding: 2.5%;
   display: flex;
@@ -74,39 +76,37 @@
   color: wheat;
 }
 .site-logo {
-  font-size: 3rem;
-  padding: 2.5%;
-  width: 50%;
-  text-align: left;
-  color: white;
   display: flex;
+  justify-content: center;
+  padding: 1%;
+  width: 60%;
   align-items: center;
 }
 
 .site-logo h1 {
+  font-size: 3rem;
+  text-align: left;
+  color: white;
   font-weight: bold;
   font-family: 'Economica', sans-serif;
-
 }
 
 .site-logo span {
-
+  margin-right: 1%;
   height: 24px;
-  width: 24px;
+  min-width: 24px;
   background-position: center;
   background-size: cover;
 }
 
-
-
 @media only screen and (max-width: 640px) {
-  .site-logo {
+  .site-logo h1 {
     font-size: 1.8rem;
   }
 }
 
 @media only screen and (max-width: 812px) {
-  .site-logo {
+  .site-logo h1 {
     font-size: 2.4rem;
   }
 }
@@ -114,7 +114,7 @@
   .nav-link a {
     font-size: 1rem;
   }
-  .site-logo {
+  .site-logo h1 {
     font-size: 0.8rem;
   }
 }
