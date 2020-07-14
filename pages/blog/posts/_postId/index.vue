@@ -31,7 +31,7 @@ export default {
     const postData = await context.app.$storyapi.get(
       'cdn/stories/blog/posts/' + context.params.postId,
       {
-        version: 'draft',
+        version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }
     )
 

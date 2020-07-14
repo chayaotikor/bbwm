@@ -40,11 +40,11 @@ export default {
   },
   async asyncData(context) {
     const postData = await context.app.$storyapi.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       starts_with: 'blog/posts',
     })
     const podcastData = await context.app.$storyapi.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       starts_with: 'blog/podcasts',
     })
     const podcasts = podcastData.data.stories.map((podcast) => {

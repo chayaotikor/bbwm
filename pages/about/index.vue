@@ -1,45 +1,45 @@
 <template>
   <section class="about-container" v-editable="blok">
     <div class="top-bar">
-    <h1 class="profile-name">{{ name }}</h1>
-    <div class="social-media-container">
-      <a
-        class="social-media-icon"
-        rel="noreferrer noopener"
-        target="_blank"
-        :href="twitter"
-        :style="{
-          backgroundImage: `url(${require('../../assets/images/twitter.svg')})`,
-        }"
-      ></a>
-      <a
-        class="social-media-icon"
-        rel="noreferrer noopener"
-        target="_blank"
-        :href="instagram"
-        :style="{
-          backgroundImage: `url(${require('../../assets/images/instagram.svg')})`,
-        }"
-      ></a>
-      <a
-        class="social-media-icon"
-        rel="noreferrer noopener"
-        target="_blank"
-        :href="linkedin"
-        :style="{
-          backgroundImage: `url(${require('../../assets/images/linkedin.svg')})`,
-        }"
-      ></a>
-      <a
-        class="social-media-icon"
-        rel="noreferrer noopener"
-        target="_blank"
-        :href="`mailto:${gmail}`"
-        :style="{
-          backgroundImage: `url(${require('../../assets/images/gmail.svg')})`,
-        }"
-      ></a>
-    </div>
+      <h1 class="profile-name">{{ name }}</h1>
+      <div class="social-media-container">
+        <a
+          class="social-media-icon"
+          rel="noreferrer noopener"
+          target="_blank"
+          :href="twitter"
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/twitter.svg')})`,
+          }"
+        ></a>
+        <a
+          class="social-media-icon"
+          rel="noreferrer noopener"
+          target="_blank"
+          :href="instagram"
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/instagram.svg')})`,
+          }"
+        ></a>
+        <a
+          class="social-media-icon"
+          rel="noreferrer noopener"
+          target="_blank"
+          :href="linkedin"
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/linkedin.svg')})`,
+          }"
+        ></a>
+        <a
+          class="social-media-icon"
+          rel="noreferrer noopener"
+          target="_blank"
+          :href="`mailto:${gmail}`"
+          :style="{
+            backgroundImage: `url(${require('../../assets/images/gmail.svg')})`,
+          }"
+        ></a>
+      </div>
     </div>
     <div class="summary-container">
       <img class="profile-photo" :src="photo" />
@@ -51,7 +51,9 @@
 export default {
   asyncData(context) {
     return context.app.$storyapi
-      .get('cdn/stories/about', { version: 'draft' })
+      .get('cdn/stories/about', {
+        version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
+      })
       .then((res) => {
         return {
           blok: res.data.story.content,
@@ -93,15 +95,14 @@ export default {
   max-width: 100%;
 }
 
-
-.top-bar{
+.top-bar {
   background-color: white;
   width: 100%;
   height: 6rem;
   position: relative;
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .profile-name {
   font-size: 3rem;
@@ -109,18 +110,16 @@ align-items: center;
   font-family: 'Dosis', sans-serif;
   padding: 1rem;
   color: black;
-
 }
 
 .social-media-container {
-   max-width: 100%;
+  max-width: 100%;
   z-index: 10;
   height: auto;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-
 }
 
 .social-media-icon {
@@ -162,15 +161,14 @@ align-items: center;
   text-align: left;
 }
 
-@media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px){
-.profile-name{
-  font-size: 1.6rem;
-}
-.social-media-icon{
-  height: 1.8rem;
-  width: 1.8rem;
-}
-
+@media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px) {
+  .profile-name {
+    font-size: 1.6rem;
+  }
+  .social-media-icon {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
 }
 
 /* Mobile Landscape */
@@ -191,14 +189,16 @@ align-items: center;
   }
 }
 
-@media only screen and (orientation: Portrait) and (max-width: 600px) and (min-height: 800px){
-  .summary-container{flex-flow: column nowrap; align-items: center;}
-  
+@media only screen and (orientation: Portrait) and (max-width: 600px) and (min-height: 800px) {
+  .summary-container {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
 }
 
 /* Tablet Portrait */
 @media only screen and (min-width: 768px) {
-  .about-container{
+  .about-container {
     border-left: 1px solid white;
     border-right: 1px solid white;
   }
@@ -207,57 +207,52 @@ align-items: center;
     height: 80vh;
     border-bottom: 1px solid white;
   }
-  
-  .profile-photo{
+
+  .profile-photo {
     float: left;
     margin: 1rem 1rem 0;
     shape-outside: inset() content-box;
     border: 1px solid white;
-
   }
-  .profile-summary{
+  .profile-summary {
     padding: 1rem;
     font-size: 1.6rem;
     line-height: 1.5;
   }
 }
 
-
 /* Large Phone Landscape */
 @media only screen and (min-width: 810px) {
-  .about-container{
-    max-width:100%;
-  border: none;
+  .about-container {
+    max-width: 100%;
+    border: none;
   }
 
-  .summary-container{
+  .summary-container {
     border: none;
   }
 }
 
-
 /* Tablet Landscape */
 @media only screen and (min-width: 1024px) {
-  .about-container{
-    max-width:800px;
-    border: 1px solid white
+  .about-container {
+    max-width: 800px;
+    border: 1px solid white;
   }
 
-
-  .profile-summary{
+  .profile-summary {
     padding: 1rem;
-     font-size: 1.8rem;
+    font-size: 1.8rem;
     line-height: 1.5;
   }
 }
-@media only screen and (min-width: 1280px){
- .about-container{
-   height: 100vh;
- }
+@media only screen and (min-width: 1280px) {
+  .about-container {
+    height: 100vh;
+  }
 
- .summary-container{
-   border:none
- }
+  .summary-container {
+    border: none;
+  }
 }
-
 </style>

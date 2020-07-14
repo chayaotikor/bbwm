@@ -30,7 +30,7 @@ import Carousel from '@/components/Landing/Carousel'
 export default {
   async asyncData(context) {
     const slideData = await context.app.$storyapi.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       starts_with: 'carousel/slides',
     })
 
