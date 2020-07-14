@@ -66,6 +66,12 @@ export default {
   text-align: left;
 }
 
+@media only screen and (max-width: 320px) and (max-height: 320px){
+  .bottom-heading{
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+}
 
 /* desktop Landscape */
 @media only screen and (min-width: 1280px) {
