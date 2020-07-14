@@ -3,7 +3,7 @@
     <nav class="main-nav">
       <h1 class="site-logo">Beyond Boundaries | Without Measure</h1>
       <ul class="nav-links">
-        <nuxt-link tag="li" to="/home" class="nav-link">
+        <nuxt-link tag="li" exact to="/" class="nav-link">
           <a>Home</a>
         </nuxt-link>
         <nuxt-link tag="li" to="/blog/posts" class="nav-link">
