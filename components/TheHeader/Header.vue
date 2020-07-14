@@ -1,7 +1,12 @@
 <template>
   <header class="main-header">
     <nav class="main-nav">
-      <h1 class="site-logo">Beyond Boundaries | Without Measure</h1>
+      <div class="site-logo">
+        <span :style="{
+          backgroundImage: `url(${require('../../assets/images/icon.png')})`,
+        }" />
+      <h1 >Beyond Boundaries | Without Measure</h1>
+      </div>
       <ul class="nav-links">
         <nuxt-link tag="li" exact to="/" class="nav-link">
           <a>Home</a>
@@ -74,8 +79,22 @@
   width: 50%;
   text-align: left;
   color: white;
+  display: flex;
+  align-items: center;
+}
+
+.site-logo h1 {
   font-weight: bold;
   font-family: 'Economica', sans-serif;
+
+}
+
+.site-logo span {
+
+  height: 24px;
+  width: 24px;
+  background-position: center;
+  background-size: cover;
 }
 
 
