@@ -92,7 +92,7 @@ export default {
   align-items: flex-start;
   position: relative;
   padding-bottom: 0;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 .middle-line {
   position: absolute;
