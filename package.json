@@ -19,7 +19,8 @@
     "moment": "^2.27.0",
     "nuxt": "^2.13.0",
     "storyblok-nuxt": "^1.2.0",
-    "videojs-youtube": "^2.6.1"
+    "videojs-youtube": "^2.6.1",
+    "vue-socialmedia-share": "^1.0.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",

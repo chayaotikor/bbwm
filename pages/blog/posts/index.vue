@@ -58,7 +58,7 @@ export default {
     })
     const posts = postData.data.stories.map((post) => {
       return {
-        id: post.id,
+        id: post.slug,
         blok: post.content,
         title: post.content.title,
         excerpt: post.content.excerpt,
@@ -84,12 +84,15 @@ export default {
 <style scoped>
 .timeline-container {
   display: flex;
+  margin-top: 6rem;
   padding-top: 2rem;
+  min-height: 100vh;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: flex-start;
   position: relative;
-  overflow-y: clip;
+  padding-bottom: 0;
+  overflow-y: scroll;
 }
 .middle-line {
   position: absolute;
@@ -98,20 +101,9 @@ export default {
   background-color: white;
 }
 
-.video-modal {
-  position: absolute;
-  z-index: 100;
-  border: 1px solid red;
-  top: 50%;
-  width: 640px;
-  height: 264px;
-  color:red;
-  background-color: white;
-}
-
 .left-container {
   width: 50%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -127,24 +119,4 @@ export default {
   align-items: center;
 }
 
-/* Mobile Landscape */
-@media only screen and (min-width: 576px) {
-
-}
-
-/* Tablet Portrait */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* Tablet Landscape */
-@media only screen and (min-width: 810px) {
-
-
-}
-
-/* Desktop */
-@media only screen and (min-width: 1024px) {
-
-}
 </style>

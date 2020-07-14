@@ -162,6 +162,17 @@ align-items: center;
   text-align: left;
 }
 
+@media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px){
+.profile-name{
+  font-size: 1.6rem;
+}
+.social-media-icon{
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+}
+
 /* Mobile Landscape */
 @media only screen and (min-width: 576px) {
   .summary-container {
@@ -178,6 +189,11 @@ align-items: center;
     padding: 0 1rem;
     line-height: 1.1;
   }
+}
+
+@media only screen and (orientation: Portrait) and (max-width: 600px) and (min-height: 800px){
+  .summary-container{flex-flow: column nowrap; align-items: center;}
+  
 }
 
 /* Tablet Portrait */
@@ -205,6 +221,7 @@ align-items: center;
     line-height: 1.5;
   }
 }
+
 
 /* Large Phone Landscape */
 @media only screen and (min-width: 810px) {

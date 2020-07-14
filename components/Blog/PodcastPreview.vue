@@ -65,7 +65,7 @@ export default {
   justify-content: flex-end;
   position: absolute;
   top: -8px;
-  right: -8px;
+  right: -6px;
 }
 .line {
   border: 1px solid white;
@@ -94,8 +94,8 @@ export default {
 }
 
 .dot {
-  height: 16px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   border: 1px solid white;
   background: white;
@@ -104,11 +104,11 @@ export default {
 }
 .podcast-container {
   text-decoration: none;
-  width: 70%;
+  width: 90%;
   height: 25vh;
   border: 1px solid white;
   display: flex;
-  margin: 2.5% 5% 5%;
+  margin: 5%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -131,8 +131,9 @@ export default {
 }
 
 .podcast-title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: white;
+  font-weight: bold;
   margin: 0 2rem;
 }
 
@@ -162,24 +163,49 @@ width: 80%;
 background-color: white;
 }
 
-/* Mobile Landscape */
-@media only screen and (min-width: 576px) {
+
+@media only screen and (max-width: 320px) and (max-height: 320px){
+.podcast-title{
+  font-size: .8rem;
+}
+.play-button{
+  height:16px;
+  width:16px;
+}
 
 }
 
 /* Tablet Portrait */
-@media only screen and (min-width: 768px) {
-
+@media only screen and (orientation: Portrait) and (min-width: 768px){
+.podcast-title{
+  font-size: 2.2rem;
+}
 }
 
 /* Tablet Landscape */
-@media only screen and (min-width: 810px) {
-
+@media only screen and (orientation: Landscape) and (min-width: 1024px){
+.podcast-title{
+  font-size: 2.4rem;
+}
 
 }
 
-/* Desktop */
-@media only screen and (min-width: 1024px) {
+/* Large Tablet Portrait*/
+@media only screen and (orientation: Portrait) and (min-width: 1024px){
+.podcast-title{
+  font-size: 2.4rem;
+}
+
+}
+
+/* Large Tablet Landscape*/
+@media only screen and (orientation: Landscape) and (min-width: 1280px){
+  .podcast-container{
+    width: 70%;
+  }
+  .podcast-title{
+  font-size: 2.8rem;
+}
 
 }
 

@@ -66,8 +66,8 @@ export default {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  margin: 6rem 0 0;
-  height: calc(100vh);
+  margin: 0;
+  height:99.8vh;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -81,7 +81,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 1rem;
+  top: 8rem;
   z-index: 9;
 }
 
@@ -94,28 +94,4 @@ export default {
   border: none;
 }
 
-/* Mobile Landscape */
-@media only screen and (min-width: 576px) {
-
-}
-
-/* Tablet Portrait */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* Large Phone Landscape */
-@media only screen and (min-width: 810px) {
-
-
-}
-
-/* Tablet Landscape */
-@media only screen and (min-width: 1024px) {
-
-}
-/* desktop Landscape */
-@media only screen and (min-width: 1280px) {
-
-}
 </style>

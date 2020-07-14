@@ -7,7 +7,7 @@
             </span>
             <span class="dot" />
           </div>
-          <nuxt-link tag='article' :to="`/posts/${id}`" class="preview-container">
+          <nuxt-link tag='article' :to="`/blog/posts/${id}`" class="preview-container">
               <div class="preview-thumbnail" :style="{backgroundImage: `url(${image})`}"></div>
               <div class="preview-content" >
                 <h1 class="preview-title">{{title}}</h1>
@@ -33,7 +33,7 @@ export default {
             required: true
         },
         id: {
-            type: Number,
+            type: String,
             required: true
         },
         date: {
@@ -70,7 +70,7 @@ export default {
   justify-content: flex-end;
   position: absolute;
   top: -8px;
-  left: -8px;
+  left: -5px;
 }
 .line {
   border: 1px solid white;
@@ -99,8 +99,8 @@ export default {
 
 
 .dot {
-  height: 16px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   border: 1px solid white;
   background: white;
@@ -109,11 +109,11 @@ export default {
 }
 .preview-container {
   text-decoration: none;
-  width: 70%;
-  height: 40vh;
+  width: 90%;
+  height: 30vh;
   border: 1px solid white;
   display: flex;
-  margin: 2.5% 5% 5%;
+  margin: 5%;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -133,42 +133,95 @@ export default {
 .preview-content {
   display: flex;
   flex-flow: column nowrap;
-  padding: 2.5%;
+  justify-content: center;
+  padding: 2% 2.5%;
   width: 100%;
-  height:40%;
+  height:50%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: white;
   color: black;
+
 }
 
 .preview-title {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .preview-text {
-  font-size: 1.4rem;
+  font-size: 1rem;
+  text-align: justify;
 }
 
-/* Mobile Landscape */
-@media only screen and (min-width: 576px) {
-
+@media only screen and (max-width: 320px) and (max-height: 320px){
+  .preview-title{
+    font-size: .8rem;
+  }
+  .preview-text{
+    font-size: .6rem;
+  }
 }
+
 
 /* Tablet Portrait */
-@media only screen and (min-width: 768px) {
+@media only screen and (orientation: Portrait) and (min-width: 768px){
 
+  .preview-title{
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .preview-text{
+    font-size: 1.8rem;
+
+  }
 }
 
 /* Tablet Landscape */
-@media only screen and (min-width: 810px) {
+@media only screen and (orientation: Landscape) and (min-width: 1024px){
+  .preview-title{
+    font-size: 2.4rem;
+    margin-bottom: .5rem;
+  }
 
+  .preview-text{
+    font-size: 2rem;
+
+  }
 
 }
 
+/* Large Tablet Portrait*/
+@media only screen and (orientation: Portrait) and (min-width: 1024px){
+    .preview-title{
+    font-size: 2.4rem;
+  }
+
+  .preview-text{
+    font-size: 2rem;
+
+  }
+}
+
+/* Large Tablet Landscape*/
+@media only screen and (orientation: Landscape) and (min-width: 1280px){
+  .preview-container{
+    width: 70%;
+  }
+
+  .preview-thumbnail{
+    background-position: center;
+  }
+      .preview-title{
+    font-size: 2.6rem;
+  }
+
+  .preview-text{
+    font-size: 2.2rem;
+  }
+}
 /* Desktop */
-@media only screen and (min-width: 1024px) {
 
-}
 
 </style>

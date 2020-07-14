@@ -5,19 +5,36 @@
       :style="{ backgroundImage: `url(${post.image})` }"
     ></section>
     <h6 class="image-credit">{{ post.credit }}</h6>
+
     <h1 class="post-title">{{ post.title }}</h1>
     <div v-html="richtext" class="post-text">{{ post.text }}</div>
+     <div class='share-buttons'>
+       <h1>Share: </h1>
+      <Facebook :url="url" scale='1'/>
+      <Twitter :url="url" scale='1'/>
+      <Linkedin :url="url" scale='1'/>
+    </div>
   </div>
 </template>
 <script>
+import { Facebook } from 'vue-socialmedia-share';
+import { Twitter } from 'vue-socialmedia-share';
+import { Linkedin } from 'vue-socialmedia-share';
+
+
 export default {
+
+  components: {
+    Facebook,Twitter,Linkedin
+  },
   async asyncData(context) {
     const postData = await context.app.$storyapi.get(
-      'cdn/stories/' + context.params.postId,
+      'cdn/stories/blog/posts/' + context.params.postId,
       {
         version: 'draft',
       }
     )
+
     const post = {
       blok: postData.data.story.content,
       title: postData.data.story.content.title,
@@ -25,7 +42,9 @@ export default {
       image: postData.data.story.content.image.filename,
       credit: postData.data.story.content.credit,
     }
-    return { post }
+
+    const url = `${window.location.href}`
+    return { post, url }
   },
   computed: {
     richtext() {
@@ -56,6 +75,7 @@ export default {
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid white;
+  
 }
 
 .image-credit {
@@ -75,6 +95,23 @@ export default {
   font-size: 1.8rem;
   line-height: 1.2;
   text-align: justify;
+}
+.share-buttons{
+  align-self: flex-end;
+ display: flex;
+ flex-flow: row nowrap;
+ justify-content: flex-end;
+ align-items: center;
+  background: none;
+}
+.share-buttons h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+}
+
+.share-buttons span {
+  margin: 0 1rem;
 }
 /* Large Laptops */
 @media only screen and (min-width: 576px) {
