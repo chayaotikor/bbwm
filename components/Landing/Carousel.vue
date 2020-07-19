@@ -3,6 +3,7 @@
     class="slide-container"
     :style="{ backgroundImage: `url(${image})` }"
   >
+  <h6>{{credit}}</h6>
     <section class="bottom-container">
       <h1 class="bottom-heading">{{ heading }}</h1>
       <p class="bottom-text">{{ text }}</p>
@@ -24,6 +25,10 @@ export default {
       type: String,
       required: true,
     },
+    credit: {
+      type: String,
+      required: true,
+    }
   },
 }
 </script>

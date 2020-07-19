@@ -67,7 +67,7 @@
   text-decoration: none;
   color: white;
   font-family: 'Dosis', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 }
 
 .nav-link a:hover,
@@ -84,7 +84,7 @@
 }
 
 .site-logo h1 {
-  font-size: 3rem;
+  font-size: 1.4rem;
   text-align: left;
   color: white;
   font-weight: bold;
@@ -99,17 +99,17 @@
   background-size: cover;
 }
 
-@media only screen and (max-width: 640px) {
-  .site-logo h1 {
-    font-size: 1.8rem;
+@media only screen and (min-width: 812px) {
+
+   .nav-link a {
+    font-size: 2rem;
+  }
+    .site-logo h1 {
+    font-size: 2rem;
   }
 }
 
-@media only screen and (max-width: 812px) {
-  .site-logo h1 {
-    font-size: 2.4rem;
-  }
-}
+
 @media only screen and (max-width: 320px) and (max-height: 320px) {
   .nav-link a {
     font-size: 1rem;

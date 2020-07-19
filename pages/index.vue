@@ -20,6 +20,7 @@
       :heading="slide.heading"
       :image="slide.image"
       :text="slide.text"
+      :credit="slide.credit"
       v-show="slide.index === currentSlide"
     />
   </div>
@@ -31,7 +32,7 @@ export default {
   async asyncData(context) {
     const slideData = await context.app.$storyapi.get('cdn/stories', {
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
-      starts_with: 'carousel/slides',
+      starts_with: 'carousel',
     })
 
     const slides = slideData.data.stories.map((slide, index) => {
@@ -42,6 +43,7 @@ export default {
         heading: slide.content.heading,
         text: slide.content.text,
         image: slide.content.image.filename,
+        credit: slide.content.credit
       }
     })
 

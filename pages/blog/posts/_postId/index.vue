@@ -10,9 +10,9 @@
     <div v-html="richtext" class="post-text">{{ post.text }}</div>
      <div class='share-buttons'>
        <h1>Share: </h1>
-      <Facebook :url="url" scale='1'/>
-      <Twitter :url="url" scale='1'/>
-      <Linkedin :url="url" scale='1'/>
+      <Facebook :url="url" scale='1' class="button-icon"/>
+      <Twitter :url="url" scale='1' class="button-icon"/>
+      <Linkedin :url="url" scale='1' class="button-icon"/>
     </div>
   </div>
 </template>
@@ -112,6 +112,7 @@ export default {
 
 .share-buttons span {
   margin: 0 1rem;
+  cursor: pointer;
 }
 /* Large Laptops */
 @media only screen and (min-width: 576px) {
