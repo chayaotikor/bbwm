@@ -3,7 +3,7 @@
     class="slide-container"
     :style="{ backgroundImage: `url(${image})` }"
   >
-  <h6>{{credit}}</h6>
+  <h6 class="image-credit">{{credit}}</h6>
     <section class="bottom-container">
       <h1 class="bottom-heading">{{ heading }}</h1>
       <p class="bottom-text">{{ text }}</p>
@@ -44,7 +44,16 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-end;
   opacity: 0.8;
+  position: relative;
 }
+
+.image-credit {
+color: white;
+font-size: 1rem;
+padding: 1rem;
+align-self: flex-start;
+}
+
 .bottom-container {
   display: flex;
   flex-flow: column nowrap;
