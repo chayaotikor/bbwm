@@ -104,6 +104,7 @@ export default {
   justify-content: space-evenly;
   align-items: flex-start;
   padding-bottom: 0;
+  position: relative;
   overflow-y: hidden;
 }
 
