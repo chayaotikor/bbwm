@@ -1,30 +1,36 @@
 <template>
-  <div class="timeline-container">
-    <section class="left-container">
-      <PodcastPreview
-        v-for="podcast in podcasts"
-        v-editable="podcast.blok"
-        :key="podcast.id"
-        :title="podcast.title"
-        :date="podcast.date"
-        :id="podcast.id"
-        :link="podcast.link"
-        @click.native="currentVid(podcast.link)"
-      />
+  <div class="main-container"> 
+    <section class="headings-container">
+      <h1 class="column-label">Speaking Engagements</h1>
+      <h1 class="column-label">Blog Posts</h1>
     </section>
-    <span class="middle-line" />
-    <section class="right-container">
-      <ArticlePreview
-        v-for="post in posts"
-        v-editable="post.blok"
-        :key="post.id"
-        :title="post.title"
-        :excerpt="post.excerpt"
-        :image="post.image"
-        :date="post.date"
-        :id="post.id"
-      />
-    </section>
+    <div class="timeline-container">
+      <section class="left-container">
+        <PodcastPreview
+          v-for="podcast in podcasts"
+          v-editable="podcast.blok"
+          :key="podcast.id"
+          :title="podcast.title"
+          :date="podcast.date"
+          :id="podcast.id"
+          :link="podcast.link"
+          @click.native="currentVid(podcast.link)"
+        />
+      </section>
+      <span class="middle-line" />
+      <section class="right-container">
+        <ArticlePreview
+          v-for="post in posts"
+          v-editable="post.blok"
+          :key="post.id"
+          :title="post.title"
+          :excerpt="post.excerpt"
+          :image="post.image"
+          :date="post.date"
+          :id="post.id"
+        />
+      </section>
+    </div>
   </div>
 </template>
 
@@ -68,9 +74,9 @@ export default {
     })
     return { posts, podcasts }
   },
-    methods: {
+  methods: {
     currentVid(link) {
-        window.open(link, "_blank")
+      window.open(link, '_blank')
     },
   },
   mounted() {
@@ -82,18 +88,41 @@ export default {
 </script>
 
 <style scoped>
+.main-container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 6rem;
+}
+
 .timeline-container {
   display: flex;
-  margin-top: 6rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   min-height: 100vh;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: flex-start;
-  position: relative;
   padding-bottom: 0;
   overflow-y: hidden;
 }
+
+.headings-container {
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-label {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 50%;
+  margin: 0 2.5%;
+  text-align: center;
+}
+
 .middle-line {
   position: absolute;
   min-height: 100%;
@@ -119,4 +148,23 @@ export default {
   align-items: center;
 }
 
+@media only screen and (max-width: 320px) {
+  .column-label{
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 768px) {
+    .column-label {
+    font-size: 2.4rem;
+  }
+}
+
+/* Large Tablet Landscape*/
+@media only screen and (orientation: Landscape) and (min-width: 1280px) {
+.column-label{
+  width: 35%;
+}
+}
 </style>

@@ -77,7 +77,7 @@
 }
 .site-logo {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 1%;
   width: 60%;
   align-items: center;
@@ -99,6 +99,15 @@
   background-size: cover;
 }
 
+@media only screen and (max-width: 320px) {
+  .nav-link a {
+    font-size: 1rem;
+  }
+  .site-logo h1 {
+    font-size: 1rem;
+  }
+}
+
 @media only screen and (min-width: 812px) {
 
    .nav-link a {
@@ -110,12 +119,5 @@
 }
 
 
-@media only screen and (max-width: 320px) and (max-height: 320px) {
-  .nav-link a {
-    font-size: 1rem;
-  }
-  .site-logo h1 {
-    font-size: 0.8rem;
-  }
-}
+
 </style>
