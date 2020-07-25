@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "export": "nuxt export",
     "serve": "nuxt serve",
-    "deploy": "nuxt generate && netlify deploy"
+    "deploy": "nuxt export && netlify deploy"
   },
   "dependencies": {
     "@marvr/storyblok-rich-text-types": "^2.0.1",
