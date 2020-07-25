@@ -1,5 +1,5 @@
 <template>
-  <div class="post-container" >
+  <div class="post-container" v-editable="blok">
     <div class="line-point">
       <i class="left-arrow" />
       <span class="line">
@@ -38,9 +38,17 @@ export default {
     },
     date: {
       type: String,
-      required: true
-    }
-
+      required: true,
+    },
+    blok: {
+      type: Object,
+      required: true,
+    },
+  },
+  mounted() {
+    this.$storybridge.on('change', () => {
+      location.reload(true)
+    })
   },
 }
 </script>
@@ -149,7 +157,7 @@ export default {
   border-bottom-right-radius: 10px;
   background: black;
 }
-.play-button{
+.play-button {
   background-color: none;
   height: 24px;
   width: 24px;
@@ -158,55 +166,49 @@ export default {
 }
 
 .play-line {
-height: 2px;
-width: 80%;
-background-color: white;
+  height: 2px;
+  width: 80%;
+  background-color: white;
 }
 
-
-@media only screen and (max-width: 320px) and (max-height: 320px){
-.podcast-title{
-  font-size: .8rem;
-}
-.play-button{
-  height:16px;
-  width:16px;
-}
-
+@media only screen and (max-width: 320px) and (max-height: 320px) {
+  .podcast-title {
+    font-size: 0.8rem;
+  }
+  .play-button {
+    height: 16px;
+    width: 16px;
+  }
 }
 
 /* Tablet Portrait */
-@media only screen and (orientation: Portrait) and (min-width: 768px){
-.podcast-title{
-  font-size: 2.2rem;
-}
+@media only screen and (orientation: Portrait) and (min-width: 768px) {
+  .podcast-title {
+    font-size: 2.2rem;
+  }
 }
 
 /* Tablet Landscape */
-@media only screen and (orientation: Landscape) and (min-width: 1024px){
-.podcast-title{
-  font-size: 2.4rem;
-}
-
+@media only screen and (orientation: Landscape) and (min-width: 1024px) {
+  .podcast-title {
+    font-size: 2.4rem;
+  }
 }
 
 /* Large Tablet Portrait*/
-@media only screen and (orientation: Portrait) and (min-width: 1024px){
-.podcast-title{
-  font-size: 2.4rem;
-}
-
+@media only screen and (orientation: Portrait) and (min-width: 1024px) {
+  .podcast-title {
+    font-size: 2.4rem;
+  }
 }
 
 /* Large Tablet Landscape*/
-@media only screen and (orientation: Landscape) and (min-width: 1280px){
-  .podcast-container{
+@media only screen and (orientation: Landscape) and (min-width: 1280px) {
+  .podcast-container {
     width: 70%;
   }
-  .podcast-title{
-  font-size: 2.8rem;
+  .podcast-title {
+    font-size: 2.8rem;
+  }
 }
-
-}
-
 </style>

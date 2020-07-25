@@ -1,51 +1,69 @@
 <template>
-     <div class="post-container">
-          <div class="line-point">
-            <i class="right-arrow" />
-            <span class='line'>
-            <!-- <h2 class="date">{{date}}</h2> -->
-            </span>
-            <span class="dot" />
-          </div>
-          <nuxt-link tag='article' :to="`/blog/posts/${id}`" class="preview-container">
-              <div class="preview-thumbnail" :style="{backgroundImage: `url(${image})`}"></div>
-              <div class="preview-content" >
-                <h1 class="preview-title">{{title}}</h1>
-                <div class="preview-text" v-html="richtext">{{excerpt}}</div>
-              </div>
-          </nuxt-link>
-        </div>
+  <div class="post-container" v-editable="blok">
+    <div class="line-point">
+      <i class="right-arrow" />
+      <span class="line">
+        <!-- <h2 class="date">{{date}}</h2> -->
+      </span>
+      <span class="dot" />
+    </div>
+    <nuxt-link
+      tag="article"
+      :to="`/blog/posts/${id}`"
+      class="preview-container"
+    >
+      <div
+        class="preview-thumbnail"
+        :style="{ backgroundImage: `url(${image})` }"
+      ></div>
+      <div class="preview-content">
+        <h1 class="preview-title">{{ title }}</h1>
+        <div class="preview-text" v-html="richtext">{{ excerpt }}</div>
+      </div>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-        title: {
-            type: String,
-            required: true
-        },
-        excerpt: {
-            type: Object,
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        },
-        id: {
-            type: String,
-            required: true
-        },
-        date: {
-            type: String,
-            required: true
-        },
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-       computed: {
+    excerpt: {
+      type: Object,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
+    blok: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
     richtext() {
-      return this.excerpt ? this.$storyapi.richTextResolver.render(this.excerpt) : ''
-    }
-  }
+      return this.excerpt
+        ? this.$storyapi.richTextResolver.render(this.excerpt)
+        : ''
+    },
+  },
+  mounted() {
+    this.$storybridge.on('change', () => {
+      location.reload(true)
+    })
+  },
 }
 </script>
 
@@ -58,7 +76,6 @@ export default {
   align-items: space-between;
   position: relative;
 }
-
 
 .line-point {
   width: 100%;
@@ -97,7 +114,6 @@ export default {
   -webkit-transform: rotate(-45deg);
 }
 
-
 .dot {
   height: 12px;
   width: 12px;
@@ -122,12 +138,12 @@ export default {
   align-self: flex-end;
 }
 .preview-thumbnail {
-  background-position:top;
+  background-position: top;
   background-size: cover;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 60%;
+  height: 80%;
 }
 
 .preview-content {
@@ -136,17 +152,17 @@ export default {
   justify-content: center;
   padding: 2% 2.5%;
   width: 100%;
-  height:50%;
+  height: 20%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: white;
   color: black;
-
 }
 
 .preview-title {
   font-size: 1.2rem;
   font-weight: bold;
+  text-align: center;
 }
 
 .preview-text {
@@ -154,74 +170,66 @@ export default {
   text-align: justify;
 }
 
-@media only screen and (max-width: 320px) and (max-height: 320px){
-  .preview-title{
-    font-size: .8rem;
+@media only screen and (max-width: 320px) and (max-height: 320px) {
+  .preview-title {
+    font-size: 0.8rem;
   }
-  .preview-text{
-    font-size: .6rem;
+  .preview-text {
+    font-size: 0.6rem;
   }
 }
 
-
 /* Tablet Portrait */
-@media only screen and (orientation: Portrait) and (min-width: 768px){
-
-  .preview-title{
+@media only screen and (orientation: Portrait) and (min-width: 768px) {
+  .preview-title {
     font-size: 2.2rem;
     margin-bottom: 1rem;
   }
 
-  .preview-text{
+  .preview-text {
     font-size: 1.8rem;
-
   }
 }
 
 /* Tablet Landscape */
-@media only screen and (orientation: Landscape) and (min-width: 1024px){
-  .preview-title{
+@media only screen and (orientation: Landscape) and (min-width: 1024px) {
+  .preview-title {
     font-size: 2.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
-  .preview-text{
+  .preview-text {
     font-size: 2rem;
-
   }
-
 }
 
 /* Large Tablet Portrait*/
-@media only screen and (orientation: Portrait) and (min-width: 1024px){
-    .preview-title{
+@media only screen and (orientation: Portrait) and (min-width: 1024px) {
+  .preview-title {
     font-size: 2.4rem;
   }
 
-  .preview-text{
+  .preview-text {
     font-size: 2rem;
-
   }
 }
 
 /* Large Tablet Landscape*/
-@media only screen and (orientation: Landscape) and (min-width: 1280px){
-  .preview-container{
+@media only screen and (orientation: Landscape) and (min-width: 1280px) {
+  .preview-container {
     width: 70%;
   }
 
-  .preview-thumbnail{
+  .preview-thumbnail {
     background-position: center;
   }
-      .preview-title{
+  .preview-title {
     font-size: 2.6rem;
   }
 
-  .preview-text{
+  .preview-text {
     font-size: 2.2rem;
   }
 }
 /* Desktop */
-
-
 </style>

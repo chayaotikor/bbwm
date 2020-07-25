@@ -36,8 +36,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
- 
-  ],
+    '~/plugins/composition-api.js',
+    '~/plugins/rich-text-renderer.js'  ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components

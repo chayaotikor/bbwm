@@ -7,29 +7,15 @@
     <h6 class="image-credit">{{ post.credit }}</h6>
 
     <h1 class="post-title">{{ post.title }}</h1>
-    <div v-html="richtext" class="post-text">{{ post.text }}</div>
-     <div class='share-buttons'>
-       <h1>Share: </h1>
-      <Facebook :url="url" scale='1' class="button-icon"/>
-      <Twitter :url="url" scale='1' class="button-icon"/>
-      <Linkedin :url="url" scale='1' class="button-icon"/>
-    </div>
+    <p v-html="richtext" class="post-text"></p>
   </div>
 </template>
+
 <script>
-import { Facebook } from 'vue-socialmedia-share';
-import { Twitter } from 'vue-socialmedia-share';
-import { Linkedin } from 'vue-socialmedia-share';
-
-
 export default {
-
-  components: {
-    Facebook,Twitter,Linkedin
-  },
   async asyncData(context) {
     const postData = await context.app.$storyapi.get(
-      'cdn/stories/blog/posts/' + context.params.postId,
+      `cdn/stories/blog/posts/${context.params.postId}`,
       {
         version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }
@@ -43,11 +29,11 @@ export default {
       credit: postData.data.story.content.credit,
     }
 
-    const url = `${window.location.href}`
-    return { post, url }
+    return { post }
   },
   computed: {
     richtext() {
+    console.log(this.post.text)
       return this.post.text
         ? this.$storyapi.richTextResolver.renderNode(this.post.text)
         : ''
@@ -60,6 +46,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .post-container {
   border-bottom: 1px solid white;

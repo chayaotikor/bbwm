@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container"> 
+  <div class="main-container">
     <section class="headings-container">
       <h1 class="column-label">Speaking Engagements</h1>
       <h1 class="column-label">Blog Posts</h1>
@@ -8,7 +8,7 @@
       <section class="left-container">
         <PodcastPreview
           v-for="podcast in podcasts"
-          v-editable="podcast.blok"
+          :blok="podcast.blok"
           :key="podcast.id"
           :title="podcast.title"
           :date="podcast.date"
@@ -21,7 +21,7 @@
       <section class="right-container">
         <ArticlePreview
           v-for="post in posts"
-          v-editable="post.blok"
+          :blok="post.blok"
           :key="post.id"
           :title="post.title"
           :excerpt="post.excerpt"
@@ -53,6 +53,7 @@ export default {
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       starts_with: 'blog/podcasts',
     })
+    
     const podcasts = podcastData.data.stories.map((podcast) => {
       return {
         id: podcast.id,
@@ -88,7 +89,7 @@ export default {
 </script>
 
 <style scoped>
-.main-container{
+.main-container {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -150,22 +151,22 @@ export default {
 }
 
 @media only screen and (max-width: 320px) {
-  .column-label{
+  .column-label {
     font-size: 1.4rem;
   }
 }
 
 /* Tablet Portrait */
 @media only screen and (min-width: 768px) {
-    .column-label {
+  .column-label {
     font-size: 2.4rem;
   }
 }
 
 /* Large Tablet Landscape*/
 @media only screen and (orientation: Landscape) and (min-width: 1280px) {
-.column-label{
-  width: 35%;
-}
+  .column-label {
+    width: 35%;
+  }
 }
 </style>
