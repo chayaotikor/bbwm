@@ -7,7 +7,7 @@
     <h6 class="image-credit">{{ post.credit }}</h6>
 
     <h1 class="post-title">{{ post.title }}</h1>
-    <p v-html="richtext" class="post-text"></p>
+    <div v-for="(text, index) in richtext" :key="index" v-html="text" class="post-text"></div>
   </div>
 </template>
 
@@ -33,17 +33,26 @@ export default {
   },
   computed: {
     richtext() {
-    console.log(this.post.text)
-      return this.post.text
-        ? this.$storyapi.richTextResolver.renderNode(this.post.text)
+      console.log()
+     const textArr = this.post.text.content.map(text => {
+      return text
+        ? this.$storyapi.richTextResolver.renderNode(text)
         : ''
+      })
+
+      console.log(this.$storyapi.richTextResolver)
+
+      return textArr
+
     },
   },
   mounted() {
     this.$storybridge.on('change', () => {
       location.reload(true)
     })
+    console.log(this.richtext)
   },
+
 }
 </script>
 
@@ -78,7 +87,7 @@ export default {
 }
 
 .post-text {
-  padding: 2rem;
+  padding: 1rem 2rem;
   font-size: 1.8rem;
   line-height: 1.2;
   text-align: justify;
