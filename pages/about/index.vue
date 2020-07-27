@@ -1,7 +1,7 @@
 <template>
   <section class="about-container" v-editable="blok">
     <div class="top-bar">
-      <h1 class="profile-name">{{ name }}</h1>
+      <h1 class="profile-name">{{ heading }}</h1>
       <div class="social-media-container">
         <a
           class="social-media-icon"
@@ -57,7 +57,7 @@ export default {
       .then((res) => {
         return {
           blok: res.data.story.content,
-          name: res.data.story.content.name,
+          heading: res.data.story.content.heading,
           photo: res.data.story.content.photo.filename,
           summary: res.data.story.content.summary,
           linkedin: res.data.story.content.linkedin.url,
