@@ -7,7 +7,7 @@
             backgroundImage: `url(${require('../../assets/images/icon.png')})`,
           }"
         />
-        <h1>Beyond Boundaries | Without Measure</h1>
+        <h1>Beyond Boundaries | Without Measures</h1>
       </div>
       <ul class="nav-links">
         <nuxt-link tag="li" exact to="/" class="nav-link">
