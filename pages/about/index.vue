@@ -43,7 +43,7 @@
     </div>
     <div class="summary-container">
       <img class="profile-photo" :src="photo" />
-      <p v-html="richtext" class="profile-summary">{{ summary }}</p>
+      <p v-for="(text, index) in richtext" :key="index" v-html="text" class="profile-summary">{{ summary }}</p>
     </div>
   </section>
 </template>
@@ -69,9 +69,13 @@ export default {
   },
   computed: {
     richtext() {
-      return this.summary
-        ? this.$storyapi.richTextResolver.render(this.summary)
+     const textArr = this.summary.content.map(text => {
+      return text
+        ? this.$storyapi.richTextResolver.renderNode(text)
         : ''
+      })
+      return textArr
+
     },
   },
   mounted() {

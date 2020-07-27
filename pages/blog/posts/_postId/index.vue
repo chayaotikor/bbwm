@@ -33,15 +33,11 @@ export default {
   },
   computed: {
     richtext() {
-      console.log()
      const textArr = this.post.text.content.map(text => {
       return text
         ? this.$storyapi.richTextResolver.renderNode(text)
         : ''
       })
-
-      console.log(this.$storyapi.richTextResolver)
-
       return textArr
 
     },
