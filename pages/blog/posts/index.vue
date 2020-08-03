@@ -143,7 +143,7 @@ export default {
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  align-self: flex-end;
+  align-self: center;
 }
 .preview-thumbnail {
   background-position: top;

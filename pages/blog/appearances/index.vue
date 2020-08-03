@@ -144,7 +144,7 @@ export default {
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  align-self: flex-start;
+  align-self: center;
   padding: 0;
 }
 

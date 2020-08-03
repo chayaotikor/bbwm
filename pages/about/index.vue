@@ -42,10 +42,10 @@
       </div>
     </div>
     <div class="summary-container">
-      <hr />
       <img class="profile-photo" :src="photo" />
-      <hr />
-      <div v-for="(text, index) in richtext" :key="index" v-html="text" class="profile-summary">{{ summary }}</div>
+      <div  class="profile-summary">
+        <div v-for="(text, index) in richtext" :key="index" v-html="text">{{ summary }}</div>
+        </div>
     </div>
   </section>
 </template>
@@ -99,6 +99,7 @@ export default {
   margin-bottom: 0;
   background-color: black;
   max-width: 100%;
+  background: none;
 }
 
 .top-bar {
@@ -161,16 +162,21 @@ export default {
 
 .profile-photo {
   height: auto;
-  max-width: 100%;
-  width: 65%;
+  width: 100%;
+
 }
 .profile-summary {
   font-family: 'Lato', sans-serif;
   font-size: 1.4rem;
   width: 100%;
   line-height: 1.2;
-  padding: 1rem;
   text-align: left;
+  border: 1px solid white;
+
+}
+
+.profile-summary div {
+  padding: 1rem;
 }
 
 @media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px) {
@@ -186,90 +192,86 @@ export default {
 
 
 /* Mobile Landscape */
-@media only screen and (min-width: 576px) {
+@media only screen and (orientation: Landscape) and (min-width: 550px) {
   .summary-container {
     flex-flow: row nowrap;
     align-items: stretch;
-    height: 100vh;
+    height: 100%;
   }
 .profile-name{
   font-size: 3rem;
 }
   .profile-photo {
-    width: 50%;
+    width: 45%;
+      border: 1px solid white;
   }
   .profile-summary {
-    border: none;
-    padding: 0 1rem;
+    border: 1px solid white;
     line-height: 1.1;
+    width: 55%;
   }
 }
 
-@media only screen and (orientation: Portrait) and (max-width: 600px) and (min-height: 800px) {
-  .summary-container {
-    flex-flow: column nowrap;
-    align-items: center;
-  }
-
-}
 
 /* Tablet Portrait */
-@media only screen and (min-width: 768px) {
-  .about-container {
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-  }
-  .summary-container {
-    display: block;
-    height: 80vh;
-    border-bottom: 1px solid white;
-  }
-
-  .profile-photo {
-    float: left;
-    margin: 1rem 1rem 0;
-    shape-outside: inset() content-box;
-    border: 1px solid white;
-  }
-  .profile-summary {
-    padding: 1rem;
-    font-size: 1.6rem;
-    line-height: 1.5;
-  }
+ @media only screen and (orientation: Portrait) and (min-width: 768px) {
+   .about-container{
+     width: 70vw;
+   }
+   .profile-photo{
+     border: 1px solid white;
+   }
+   .profile-summary{
+     font-size: 1.6rem;
+   }
+   .profile-name {
+     font-size: 3rem;
+   }
 }
 
 /* Large Phone Landscape */
-@media only screen and (min-width: 810px) {
+@media only screen and (orientation: Landscape) and (min-width: 810px) {
   .about-container {
     max-width: 100%;
-    border: none;
   }
 
-  .summary-container {
-    border: none;
-  }
+.profile-summary{
+  font-size: 1.6rem;
+}
 }
 
 /* Tablet Landscape */
 @media only screen and (min-width: 1024px) {
-  .about-container {
-    max-width: 800px;
-    border: 1px solid white;
-  }
+
 
   .profile-summary {
     padding: 1rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 1.5;
   }
 }
-@media only screen and (min-width: 1280px) {
-  .about-container {
-    height: 100vh;
-  }
 
-  .summary-container {
-    border: none;
+/* Laptops and Large Tablets */
+
+@media only screen and (min-width: 1280px) {
+  .profile-summary {
+    line-height: 2;
+  }
+}
+
+/* Large Screens */
+@media only screen and (min-width: 1440px) {
+
+.profile-photo{
+  width: 40%;
+}
+
+  .profile-summary {
+    width: 60%;
+    font-size: 2.8rem;
+    line-height: 1.5;
+    text-align: justify;
+
   }
 }
 </style>
