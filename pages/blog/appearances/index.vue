@@ -39,7 +39,7 @@ export default {
 
     const appearanceData = await context.app.$storyapi.get('cdn/stories', {
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
-      starts_with: 'blog/podcasts',
+      starts_with: 'blog/appearances',
     })
     
     const appearances = appearanceData.data.stories.map((appearance) => {

@@ -67,7 +67,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.richtext)
     this.$storybridge.on('change', () => {
       location.reload(true)
     })

@@ -1,5 +1,5 @@
 <template>
-  <header class="main-header" >
+  <header class="main-header">
     <div class="site-logo">
       <span
         :style="{
@@ -8,35 +8,38 @@
       />
       <h1>Beyond Boundaries | Without Measures</h1>
     </div>
-    <div class="button-container" @click="open === true ? openMenu(false): openMenu(true)">
-    <span
-      class="menu-button"
-      v-show="open === true"
-      :style="{
-        backgroundImage: `url(${require('../../assets/images/x-icon.png')})`,
-      }"
-    />
-    <span
-      v-show="open === false"
-      class="menu-button"
-      :style="{
-        backgroundImage: `url(${require('../../assets/images/hamburger.png')})`,
-      }"
-    />
+    <div
+      class="button-container"
+      @click="open === true ? openMenu(false) : openMenu(true)"
+    >
+      <span
+        class="menu-button"
+        v-show="open === true"
+        :style="{
+          backgroundImage: `url(${require('../../assets/images/x-icon.png')})`,
+        }"
+      />
+      <span
+        v-show="open === false"
+        class="menu-button"
+        :style="{
+          backgroundImage: `url(${require('../../assets/images/hamburger.png')})`,
+        }"
+      />
     </div>
     <nav class="main-nav" v-show="open === true">
-      <ul class="nav-links">
+      <ul class="nav-links"  @click="openMenu(false)">
         <nuxt-link tag="li" exact to="/" class="nav-link">
-          <a>Home</a>
+          <h1>Home</h1>
         </nuxt-link>
         <nuxt-link tag="li" to="/about" class="nav-link">
-          <a>About</a>
+          <h1>About</h1>
         </nuxt-link>
         <nuxt-link tag="li" to="/blog/posts" class="nav-link">
-          <a>Posts</a>
+          <h1>Posts</h1>
         </nuxt-link>
         <nuxt-link tag="li" to="/blog/appearances" class="nav-link">
-          <a>Appearances</a>
+          <h1>Appearances</h1>
         </nuxt-link>
       </ul>
     </nav>
@@ -53,6 +56,7 @@ export default {
 
   methods: {
     openMenu(bool) {
+      console.log(bool)
       this.open = bool
     },
   },
@@ -79,7 +83,7 @@ export default {
   display: flex;
   justify-content: center;
 }
-.button-container{
+.button-container {
   height: 6rem;
   width: 25vw;
   display: flex;
@@ -120,18 +124,28 @@ export default {
 .nav-link.nuxt-link-exact-active {
   font-weight: bold;
 }
+.nav-link {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-flow: column nowrap;;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
 
-.nav-link a {
+.nav-link h1 {
   text-decoration: none;
   color: white;
   font-family: 'Dosis', sans-serif;
   font-size: 1.4rem;
-  margin: 2rem 0;
+  width: 100%;
 }
 
-.nav-link a:hover,
-.nav-link a:active,
-.nav-link.nuxt-link-exact-active a {
+.nav-link h1:hover,
+.nav-link h1:active,
+.nav-link.nuxt-link-exact-active h1 {
   color: wheat;
 }
 .site-logo {
@@ -160,7 +174,7 @@ export default {
 }
 
 @media only screen and (max-width: 320px) {
-  .nav-link a {
+  .nav-link h1 {
     font-size: 1rem;
   }
   .site-logo h1 {
@@ -168,8 +182,8 @@ export default {
   }
 }
 
-@media only screen and (min-width: 812px) {
-  .nav-link a {
+@media only screen and (min-width: 768px) {
+  .nav-link h1 {
     font-size: 2rem;
   }
   .site-logo h1 {

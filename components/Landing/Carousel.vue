@@ -64,6 +64,7 @@ export default {
   color: black;
   background: white;
   width: 100%;
+  min-height: 39vh;
   position: relative;
 }
 
