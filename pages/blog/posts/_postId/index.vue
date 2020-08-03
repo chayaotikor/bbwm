@@ -46,7 +46,6 @@ export default {
     this.$storybridge.on('change', () => {
       location.reload(true)
     })
-    console.log(this.richtext)
   },
 
 }

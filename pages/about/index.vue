@@ -42,8 +42,10 @@
       </div>
     </div>
     <div class="summary-container">
+      <hr />
       <img class="profile-photo" :src="photo" />
-      <p v-for="(text, index) in richtext" :key="index" v-html="text" class="profile-summary">{{ summary }}</p>
+      <hr />
+      <div v-for="(text, index) in richtext" :key="index" v-html="text" class="profile-summary">{{ summary }}</div>
     </div>
   </section>
 </template>
@@ -109,14 +111,16 @@ export default {
   align-items: center;
 }
 .profile-name {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: left;
   font-family: 'Dosis', sans-serif;
   padding: 1rem;
+  font-weight: bold;
   color: black;
 }
 
 .social-media-container {
+
   max-width: 100%;
   z-index: 10;
   height: auto;
@@ -150,6 +154,11 @@ export default {
   align-items: center;
 }
 
+.summary-container hr {
+  width: 100%;
+  background: white;
+}
+
 .profile-photo {
   height: auto;
   max-width: 100%;
@@ -159,7 +168,6 @@ export default {
   font-family: 'Lato', sans-serif;
   font-size: 1.4rem;
   width: 100%;
-  border-top: 1px solid white;
   line-height: 1.2;
   padding: 1rem;
   text-align: left;
@@ -167,13 +175,15 @@ export default {
 
 @media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px) {
   .profile-name {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
   .social-media-icon {
     height: 1.8rem;
     width: 1.8rem;
   }
 }
+
+
 
 /* Mobile Landscape */
 @media only screen and (min-width: 576px) {
@@ -182,7 +192,9 @@ export default {
     align-items: stretch;
     height: 100vh;
   }
-
+.profile-name{
+  font-size: 3rem;
+}
   .profile-photo {
     width: 50%;
   }
@@ -198,6 +210,7 @@ export default {
     flex-flow: column nowrap;
     align-items: center;
   }
+
 }
 
 /* Tablet Portrait */
