@@ -146,6 +146,7 @@ export default {
   padding: 0;
   background-color: black;
   width: 100%;
+  max-width: 1440px;
   justify-self: flex-end;
   color: white;
   height: calc(100vh + 6rem);
@@ -155,10 +156,6 @@ export default {
   align-items: center;
 }
 
-.summary-container hr {
-  width: 100%;
-  background: white;
-}
 
 .profile-photo {
   height: auto;
@@ -196,6 +193,7 @@ export default {
   .summary-container {
     flex-flow: row nowrap;
     align-items: stretch;
+    justify-content: center;
     height: 100%;
   }
 .profile-name{
@@ -262,16 +260,9 @@ export default {
 /* Large Screens */
 @media only screen and (min-width: 1440px) {
 
-.profile-photo{
-  width: 40%;
+.profile-summary{
+  font-size: 2.8rem;
+  line-height: 1.5;
 }
-
-  .profile-summary {
-    width: 60%;
-    font-size: 2.8rem;
-    line-height: 1.5;
-    text-align: justify;
-
-  }
 }
 </style>

@@ -21,7 +21,6 @@
       :image="slide.image"
       :text="slide.text"
       :credit="slide.credit"
-      :richtext="richtext"
       v-show="slide.index === currentSlide"
     />
   </div>
@@ -54,16 +53,6 @@ export default {
   methods: {
     setCurrentSlide(id) {
       this.currentSlide = id
-    },
-  },
-  computed: {
-    richtext() {
-      const textArr = this.slides[this.currentSlide].text.content.map(text => {
-      return text
-        ? this.$storyapi.richTextResolver.renderNode(text)
-        : ''
-      })
-      return textArr
     },
   },
   mounted() {

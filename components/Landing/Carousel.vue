@@ -27,10 +27,21 @@ export default {
       type: String,
       required: true,
     },
-    richtext: {
-      type: Array,
+    text: {
+      type: Object,
       required: true
     }
+  },
+    computed: {
+    richtext() {
+     const textArr = this.text.content.map(text => {
+      return text
+        ? this.$storyapi.richTextResolver.renderNode(text)
+        : ''
+      })
+      return textArr
+
+    },
   },
 }
 </script>
