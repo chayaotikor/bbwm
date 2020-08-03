@@ -21,6 +21,7 @@
       :image="slide.image"
       :text="slide.text"
       :credit="slide.credit"
+      :richtext="richtext"
       v-show="slide.index === currentSlide"
     />
   </div>
@@ -55,7 +56,18 @@ export default {
       this.currentSlide = id
     },
   },
+  computed: {
+    richtext() {
+      const textArr = this.slides[this.currentSlide].text.content.map(text => {
+      return text
+        ? this.$storyapi.richTextResolver.renderNode(text)
+        : ''
+      })
+      return textArr
+    },
+  },
   mounted() {
+    console.log(this.richtext)
     this.$storybridge.on('change', () => {
       location.reload(true)
     })
@@ -69,7 +81,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin: 0;
-  height:99.8vh;
   position: relative;
   justify-content: center;
   align-items: center;
