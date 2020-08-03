@@ -19,6 +19,9 @@
         <nuxt-link tag="li" to="/about" class="nav-link">
           <a>About</a>
         </nuxt-link>
+        <nuxt-link tag="li" to="/blog/appearances" class="nav-link">
+          <a>Appearances</a>
+        </nuxt-link>
       </ul>
     </nav>
   </header>

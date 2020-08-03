@@ -1,26 +1,32 @@
 <template>
 <div class="main-container">
-  <div class="post-container" v-for="post in posts" v-editable="post.blok" :key="post.id">
+  <div class="post-container" v-for="appearance in appearances" :key="appearance.id" v-editable="appearance.blok" >
     <div class="line-point">
       <i class="right-arrow" />
       <span class="line">
-        <!-- <h2 class="date">{{date}}</h2> -->
+        <!-- <h2 class="date">{{ date }}</h2> -->
       </span>
       <span class="dot" />
     </div>
-    <nuxt-link
-      tag="article"
-      :to="`/blog/posts/${post.id}`"
-      class="preview-container"
-    >
+    <button class="appearance-container" @click="currentVid(appearance.link)" >
       <div
-        class="preview-thumbnail"
-        :style="{ backgroundImage: `url(${post.image})` }"
-      ></div>
-      <div class="preview-content">
-        <h1 class="preview-title">{{ post.title }}</h1>
+        class="appearance-thumbnail"
+        :style="{
+          backgroundImage: `url(${require('../../../assets/images/podcast.jpg')})`,
+        }"
+      >
+        <h1 class="appearance-title">{{ appearance.title }}</h1>
       </div>
-    </nuxt-link>
+      <div class="bottom-container">
+        <span
+          class="play-button"
+          :style="{
+            backgroundImage: `url(${require('../../../assets/images/playbutton.svg')})`,
+          }"
+        />
+        <span class="play-line" />
+      </div>
+    </button>
   </div>
 </div>
 </template>
@@ -29,31 +35,27 @@
 import moment from 'moment'
 
 export default {
-
   async asyncData(context) {
-    const postData = await context.app.$storyapi.get('cdn/stories', {
+
+    const appearanceData = await context.app.$storyapi.get('cdn/stories', {
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
-      starts_with: 'blog/posts',
+      starts_with: 'blog/podcasts',
     })
-  
     
-    const posts = postData.data.stories.map((post) => {
+    const appearances = appearanceData.data.stories.map((appearance) => {
       return {
-        id: post.slug,
-        blok: post.content,
-        title: post.content.title,
-        excerpt: post.content.excerpt,
-        image: post.content.image.filename,
-        date: moment(post.created_at).format('MMMM DD[,] YYYY'),
+        id: appearance.id,
+        blok: appearance.content,
+        title: appearance.content.title,
+        link: appearance.content.link,
+        date: moment(appearance.created_at).format('MMMM DD[,] YYYY'),
       }
     })
-    return { posts }
+    return { appearances }
   },
- computed: {
-    richtext() {
-      return this.excerpt
-        ? this.$storyapi.richTextResolver.render(this.excerpt)
-        : ''
+  methods: {
+    currentVid(link) {
+      window.open(link, '_blank')
     },
   },
   mounted() {
@@ -73,9 +75,8 @@ export default {
   margin-top: 8rem;
   border-left: 2px solid white;
   width: 90vw;
-  height: 100vh;
+  height: 100%;
 }
-
 .post-container {
   width: 100%;
   display: flex;
@@ -104,6 +105,7 @@ export default {
   width: 100%;
   height: 2px;
   display: flex;
+  z-index: 5;
   justify-content: center;
 }
 
@@ -121,7 +123,6 @@ export default {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-
 .dot {
   height: 12px;
   width: 12px;
@@ -131,10 +132,10 @@ export default {
   margin: 0;
   z-index: 1;
 }
-.preview-container {
+.appearance-container {
   text-decoration: none;
   width: 90%;
-  height: 30vh;
+  height: 25vh;
   border: 1px solid white;
   display: flex;
   margin: 5%;
@@ -143,111 +144,100 @@ export default {
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  align-self: flex-end;
+  align-self: flex-start;
+  padding: 0;
 }
-.preview-thumbnail {
-  background-position: top;
+
+.appearance-thumbnail {
+  background-position: center;
   background-size: cover;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 80%;
-}
-
-.preview-content {
+  height: 70%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  padding: 2% 2.5%;
+}
+
+.appearance-title {
+  font-size: 1.6rem;
+  color: white;
+  font-weight: bold;
+  margin: 0 2rem;
+}
+
+.bottom-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 2.5%;
   width: 100%;
-  height: 20%;
+  height: 30%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: white;
-  color: black;
+  background: black;
+}
+.play-button {
+  background-color: none;
+  height: 24px;
+  width: 24px;
+  background-position: center;
+  background-size: cover;
 }
 
-.preview-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
+.play-line {
+  height: 2px;
+  width: 80%;
+  background-color: white;
 }
-
-.preview-text {
-  font-size: 1rem;
-  text-align: justify;
-}
-
 
 @media only screen and (orientation: Landscape) {
-  .main-container{
-    height: 100%;
-  }
-  .preview-container {
-    height: 50vh;
+  .appearance-container {
+    height: 40vh;
   }
   
 }
+
 @media only screen and (max-width: 320px) and (max-height: 320px) {
-  .preview-title {
+  .appearance-title {
     font-size: 0.8rem;
   }
-  .preview-text {
-    font-size: 0.6rem;
+  .play-button {
+    height: 16px;
+    width: 16px;
   }
 }
 
 /* Tablet Portrait */
 @media only screen and (orientation: Portrait) and (min-width: 768px) {
-  .preview-title {
+  .appearance-title {
     font-size: 2.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .preview-text {
-    font-size: 1.8rem;
   }
 }
 
 /* Tablet Landscape */
 @media only screen and (orientation: Landscape) and (min-width: 1024px) {
-  .preview-title {
+  .appearance-title {
     font-size: 2.4rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .preview-text {
-    font-size: 2rem;
   }
 }
 
 /* Large Tablet Portrait*/
 @media only screen and (orientation: Portrait) and (min-width: 1024px) {
-  .preview-title {
+  .appearance-title {
     font-size: 2.4rem;
-  }
-
-  .preview-text {
-    font-size: 2rem;
   }
 }
 
 /* Large Tablet Landscape*/
 @media only screen and (orientation: Landscape) and (min-width: 1280px) {
-  .preview-container {
+  .appearance-container {
     width: 70%;
   }
-
-  .preview-thumbnail {
-    background-position: center;
-  }
-  .preview-title {
-    font-size: 2.6rem;
-  }
-
-  .preview-text {
-    font-size: 2.2rem;
+  .appearance-title {
+    font-size: 2.8rem;
   }
 }
-/* Desktop */
 </style>
