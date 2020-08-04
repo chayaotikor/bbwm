@@ -1,12 +1,14 @@
 <template>
   <section
     class="slide-container"
-    :style="{ backgroundImage: `url(${image})` }"
   >
-  <h6 class="image-credit">{{credit}}</h6>
+  <div :style="{ backgroundImage: `url(${image})` }" class="image"> 
+
+  </div>
     <section class="bottom-container">
+    <h6 class="image-credit">{{ credit }}</h6>
       <h1 class="bottom-heading">{{ heading }}</h1>
-      <p class="bottom-text">{{ text }}</p>
+      <div class="bottom-text"  v-html="text" v-for="(text, index) in richtext" :key="index"></div>
     </section>
   </section>
 </template>
@@ -21,14 +23,25 @@ export default {
       type: String,
       required: true,
     },
-    text: {
-      type: String,
-      required: true,
-    },
     credit: {
       type: String,
       required: true,
+    },
+    text: {
+      type: Object,
+      required: true
     }
+  },
+    computed: {
+    richtext() {
+     const textArr = this.text.content.map(text => {
+      return text
+        ? this.$storyapi.richTextResolver.renderNode(text)
+        : ''
+      })
+      return textArr
+
+    },
   },
 }
 </script>
@@ -36,52 +49,62 @@ export default {
 <style scoped>
 .slide-container {
   width: 100%;
-  height: 100vh;
-  background-position: top;
-  background-size:cover;
-  background-repeat: no-repeat;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  opacity: 0.8;
   position: relative;
+  opacity: .9;
+}
+.image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 60vh;
+
 }
 
-.image-credit {
-color: white;
-font-size: 1rem;
-padding: 1rem;
-align-self: flex-start;
-}
+
 
 .bottom-container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-    padding: 2rem;
-
+  padding: 2rem;
   color: black;
   background: white;
   width: 100%;
-  height:100px;
+  min-height: 39vh;
+  position: relative;
+}
+
+.image-credit {
+  color: black;
+  font-size: 1rem;
+  padding: 1rem;
+  align-self: flex-start;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .bottom-heading {
   font-size: 2.6rem;
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
   text-decoration: underline;
-  padding-bottom: 1rem;
+  padding: 1rem;
 }
 
 .bottom-text {
   font-size: 1.4rem;
   font-family: 'Lato', sans-serif;
   text-align: left;
+  padding: 1rem;
 }
 
-@media only screen and (max-width: 320px) and (max-height: 320px){
-  .bottom-heading{
+@media only screen and (max-width: 320px) and (max-height: 320px) {
+  .bottom-heading {
     font-size: 2rem;
     margin-top: 1rem;
   }
@@ -89,11 +112,11 @@ align-self: flex-start;
 
 /* desktop Landscape */
 @media only screen and (min-width: 1280px) {
-.bottom-heading{
-font-size: 3.2rem;
-}
-.bottom-text{
-  font-size: 2.4rem;
-}
+  .bottom-heading {
+    font-size: 3.2rem;
+  }
+  .bottom-text {
+    font-size: 2.4rem;
+  }
 }
 </style>

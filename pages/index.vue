@@ -69,7 +69,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin: 0;
-  height:99.8vh;
   position: relative;
   justify-content: center;
   align-items: center;

@@ -1,48 +1,61 @@
 <template>
-  <div class="post-container" v-editable="blok">
+<div class="main-container">
+  <div class="post-container" v-for="appearance in appearances" :key="appearance.id" v-editable="appearance.blok" >
     <div class="line-point">
-      <i class="left-arrow" />
+      <i class="right-arrow" />
       <span class="line">
         <!-- <h2 class="date">{{ date }}</h2> -->
       </span>
       <span class="dot" />
     </div>
-    <button class="podcast-container">
+    <button class="appearance-container" @click="currentVid(appearance.link)" >
       <div
-        class="podcast-thumbnail"
+        class="appearance-thumbnail"
         :style="{
-          backgroundImage: `url(${require('../../assets/images/podcast.jpg')})`,
+          backgroundImage: `url(${require('../../../assets/images/podcast.jpg')})`,
         }"
       >
-        <h1 class="podcast-title">{{ title }}</h1>
+        <h1 class="appearance-title">{{ appearance.title }}</h1>
       </div>
       <div class="bottom-container">
         <span
           class="play-button"
           :style="{
-            backgroundImage: `url(${require('../../assets/images/playbutton.svg')})`,
+            backgroundImage: `url(${require('../../../assets/images/playbutton.svg')})`,
           }"
         />
         <span class="play-line" />
       </div>
     </button>
   </div>
+</div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    date: {
-      type: String,
-      required: true,
-    },
-    blok: {
-      type: Object,
-      required: true,
+  async asyncData(context) {
+
+    const appearanceData = await context.app.$storyapi.get('cdn/stories', {
+      version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
+      starts_with: 'blog/appearances',
+    })
+    
+    const appearances = appearanceData.data.stories.map((appearance) => {
+      return {
+        id: appearance.id,
+        blok: appearance.content,
+        title: appearance.content.title,
+        link: appearance.content.link,
+        date: moment(appearance.created_at).format('MMMM DD[,] YYYY'),
+      }
+    })
+    return { appearances }
+  },
+  methods: {
+    currentVid(link) {
+      window.open(link, '_blank')
     },
   },
   mounted() {
@@ -54,6 +67,16 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 8rem;
+  border-left: 2px solid white;
+  width: 90vw;
+  height: 100%;
+}
 .post-container {
   width: 100%;
   display: flex;
@@ -68,12 +91,12 @@ export default {
   height: 16px;
   display: flex;
   align-self: flex-end;
-  flex-flow: row nowrap;
+  flex-flow: row-reverse nowrap;
   align-items: center;
   justify-content: flex-end;
   position: absolute;
   top: -8px;
-  right: -6px;
+  left: -7px;
 }
 .line {
   border: 1px solid white;
@@ -92,15 +115,14 @@ export default {
   font-size: 16px;
 }
 
-.left-arrow {
+.right-arrow {
   border: solid white;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
-
 .dot {
   height: 12px;
   width: 12px;
@@ -110,7 +132,7 @@ export default {
   margin: 0;
   z-index: 1;
 }
-.podcast-container {
+.appearance-container {
   text-decoration: none;
   width: 90%;
   height: 25vh;
@@ -122,11 +144,11 @@ export default {
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  align-self: flex-start;
+  align-self: center;
   padding: 0;
 }
 
-.podcast-thumbnail {
+.appearance-thumbnail {
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -138,7 +160,7 @@ export default {
   justify-content: center;
 }
 
-.podcast-title {
+.appearance-title {
   font-size: 1.6rem;
   color: white;
   font-weight: bold;
@@ -171,8 +193,15 @@ export default {
   background-color: white;
 }
 
+@media only screen and (orientation: Landscape) {
+  .appearance-container {
+    height: 40vh;
+  }
+  
+}
+
 @media only screen and (max-width: 320px) and (max-height: 320px) {
-  .podcast-title {
+  .appearance-title {
     font-size: 0.8rem;
   }
   .play-button {
@@ -183,31 +212,31 @@ export default {
 
 /* Tablet Portrait */
 @media only screen and (orientation: Portrait) and (min-width: 768px) {
-  .podcast-title {
+  .appearance-title {
     font-size: 2.2rem;
   }
 }
 
 /* Tablet Landscape */
 @media only screen and (orientation: Landscape) and (min-width: 1024px) {
-  .podcast-title {
+  .appearance-title {
     font-size: 2.4rem;
   }
 }
 
 /* Large Tablet Portrait*/
 @media only screen and (orientation: Portrait) and (min-width: 1024px) {
-  .podcast-title {
+  .appearance-title {
     font-size: 2.4rem;
   }
 }
 
 /* Large Tablet Landscape*/
 @media only screen and (orientation: Landscape) and (min-width: 1280px) {
-  .podcast-container {
+  .appearance-container {
     width: 70%;
   }
-  .podcast-title {
+  .appearance-title {
     font-size: 2.8rem;
   }
 }
