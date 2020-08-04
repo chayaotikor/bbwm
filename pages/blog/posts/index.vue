@@ -71,13 +71,15 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-top: 8rem;
-  border-left: 2px solid white;
+  border-left: 3px solid white;
   width: 90vw;
+  max-width: 1280px;
   height: 100vh;
 }
 
 .post-container {
   width: 100%;
+  
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -98,11 +100,11 @@ export default {
   left: -7px;
 }
 .line {
-  border: 1px solid white;
+  
   color: white;
   background-color: white;
   width: 100%;
-  height: 2px;
+  height: 3px;
   display: flex;
   justify-content: center;
 }

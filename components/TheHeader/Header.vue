@@ -73,7 +73,7 @@ export default {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid white;
   z-index: 50;
@@ -84,10 +84,12 @@ export default {
   justify-content: center;
 }
 .button-container {
+  position: absolute;
   height: 6rem;
+  right: 0;
   width: 25vw;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background-color: none;
 }
@@ -182,6 +184,12 @@ export default {
   }
 }
 
+@media only screen and (min-width:640px) {
+  .button-container {
+    justify-content: center;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .nav-link h1 {
     font-size: 2rem;
@@ -190,4 +198,6 @@ export default {
     font-size: 3rem;
   }
 }
+
+
 </style>
