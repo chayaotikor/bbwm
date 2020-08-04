@@ -73,7 +73,8 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-top: 8rem;
-  border-left: 2px solid white;
+  max-width: 1280px;
+  border-left: 3px solid white;
   width: 90vw;
   height: 100%;
 }
@@ -99,11 +100,10 @@ export default {
   left: -7px;
 }
 .line {
-  border: 1px solid white;
   color: white;
   background-color: white;
   width: 100%;
-  height: 2px;
+  height: 3px;
   display: flex;
   z-index: 5;
   justify-content: center;
