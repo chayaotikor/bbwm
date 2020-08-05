@@ -69,14 +69,15 @@ export default {
 .bottom-container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  color: black;
-  background: white;
+  color: white;
+  background: black;
   width: 100%;
-  min-height: 39vh;
+  min-height: 30vh;
   position: relative;
+  border-top: 1px solid white;
 }
 
 .image-credit {
@@ -92,6 +93,8 @@ export default {
   font-size: 2.6rem;
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
+  text-align: center;
+  width: 70%;
   text-decoration: underline;
   padding: 1rem;
 }
@@ -99,8 +102,9 @@ export default {
 .bottom-text {
   font-size: 1.4rem;
   font-family: 'Lato', sans-serif;
-  text-align: left;
+  text-align: center;
   padding: 1rem;
+  width: 70%;
 }
 
 @media only screen and (max-width: 320px) and (max-height: 320px) {

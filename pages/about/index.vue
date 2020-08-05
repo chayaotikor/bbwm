@@ -191,23 +191,30 @@ export default {
 /* Mobile Landscape */
 @media only screen and (orientation: Landscape) and (min-width: 550px) {
   .summary-container {
-    flex-flow: row nowrap;
-    align-items: stretch;
-    justify-content: center;
+    display: block;
     height: 100%;
   }
 .profile-name{
   font-size: 3rem;
 }
   .profile-photo {
-    width: 45%;
+    float: left;
+    max-width: 40%;
+    margin-right:3rem;
+    margin-bottom: 1.5rem;
+    shape-outside: inset() margin-box;
       border: 1px solid white;
   }
   .profile-summary {
     border: 1px solid white;
-    line-height: 1.1;
-    width: 55%;
+    width: 100%;
+    text-align: justify;
   }
+
+  .profile-summary div {
+    line-height: 1.4;
+  }
+
 }
 
 

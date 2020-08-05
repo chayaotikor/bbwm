@@ -1,17 +1,24 @@
 <template>
-  <div class="carousel-container">
-    <span class="pagination-container">
+  <div
+    class="carousel-container"
+    @touchstart="touchStart"
+    @touchEndMethod="touchEnd"
+  >
+    <span class="arrow-container">
       <button
-        v-for="slide in slides"
-        :key="slide.index"
-        @click="setCurrentSlide(slide.index)"
-        class="pagination-dot"
-        :style="[
-          currentSlide === slide.index
-            ? { 'background-color': 'wheat' }
-            : { 'background-color': 'white' },
-        ]"
-      ></button>
+        @click="setCurrentSlide('left')"
+        class="left-arrow"
+        :style="{
+          backgroundImage: `url(${require('../assets/images/arrow.png')})`,
+        }"
+      />
+      <button
+        @click="setCurrentSlide('right')"
+        class="right-arrow"
+        :style="{
+          backgroundImage: `url(${require('../assets/images/arrow.png')})`,
+        }"
+      />
     </span>
     <Carousel
       v-for="slide in slides"
@@ -43,7 +50,7 @@ export default {
         heading: slide.content.heading,
         text: slide.content.text,
         image: slide.content.image.filename,
-        credit: slide.content.credit
+        credit: slide.content.credit,
       }
     })
 
@@ -51,8 +58,43 @@ export default {
     return { slides, currentSlide }
   },
   methods: {
-    setCurrentSlide(id) {
-      this.currentSlide = id
+    setCurrentSlide(direction) {
+      if (direction === 'right') {
+        if (this.currentSlide === this.slides.length - 1) {
+          this.currentSlide = 0
+        } else {
+          this.currentSlide++
+        }
+      }
+      if (direction === 'left') {
+        if (this.currentSlide === 0) {
+          this.currentSlide = this.slides.length - 1
+        } else {
+          this.currentSlide--
+        }
+      }
+    },
+    touchStart(touchEvent) {
+      if (touchEvent.changedTouches.length !== 1) {
+        return
+      }
+      const posXStart = touchEvent.changedTouches[0].clientX
+      addEventListener(
+        'touchend',
+        (touchEvent) => this.touchEnd(touchEvent, posXStart),
+        { once: true }
+      )
+    },
+    touchEnd(touchEvent, posXStart) {
+      if (touchEvent.changedTouches.length !== 1) {
+        return
+      }
+      const posXEnd = touchEvent.changedTouches[0].clientX
+      if (posXStart < posXEnd) {
+        this.setCurrentSlide('right')
+      } else if (posXStart > posXEnd) {
+        this.setCurrentSlide('left')
+      }
     },
   },
   mounted() {
@@ -75,24 +117,34 @@ export default {
   text-align: center;
 }
 
-.pagination-container {
+.arrow-container {
   display: flex;
-  width: 100px;
+  width: 100%;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 8rem;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 9;
 }
 
-.pagination-dot {
+.left-arrow {
   border-radius: 50%;
-  height: 16px;
-  width: 16px;
+  transform: rotate(180deg);
+  height: 48px;
+  width: 48px;
   margin: 2.5%;
   cursor: pointer;
   border: none;
 }
-
+.right-arrow {
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  margin: 2.5%;
+  cursor: pointer;
+  border: none;
+}
 </style>
