@@ -56,7 +56,6 @@ export default {
 
   methods: {
     openMenu(bool) {
-      console.log(bool)
       this.open = bool
     },
   },

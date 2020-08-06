@@ -42,6 +42,9 @@
       <img class="profile-photo" :src="photo" />
       <div  class="profile-summary">
         <div v-for="(text, index) in richtext" :key="index" v-html="text">{{ summary }}</div>
+        <a :href="`https://a.storyblok.com/f/88141/x/1f5db0b230/shaelyn-otikor-miller-speaker-profile.pdf`" class="pdf-link"> <div :style="{
+            backgroundImage: `url(${require('../../assets/images/pdf-icon.png')})`,
+          }"></div><h6>View/Print Short Bio Here</h6></a>
          <a
           class="social-media-icon-email"
           rel="noreferrer noopener"
@@ -97,6 +100,7 @@ export default {
 </script>
 
 <style scoped>
+
 .about-container {
   display: flex;
   flex-flow: column nowrap;
@@ -186,6 +190,18 @@ font-weight: bold;
   align-items: center;
 }
 
+.pdf-link{
+  color: wheat;
+  width: 100%;
+  display: flex;
+  font-family: 'Dosis', sans-serif;
+  align-items: center;
+}
+
+.pdf-link:active, .pdf-link:visited {
+  color: rgb(194, 175, 139);
+}
+
 
 .profile-photo {
   height: auto;
@@ -203,30 +219,38 @@ font-weight: bold;
 }
 
 .social-media-icon-email {
-  color: white;
+  color: wheat;
   display: flex;
   align-items: center;
-  text-decoration: none;
+}
+
+.social-media-icon-email:active, .social-media-icon-email:visited{
+  color: rgb(194, 175, 139);
 }
 
 
-.social-media-icon-email div:hover {
+.social-media-icon-email div:hover, .pdf-link div:hover {
   transform: scale(1.1);
 }
-.social-media-icon-email div{
-    height: 36px;
-  width: 36px;
-  margin: 1rem;
-   background-repeat: no-repeat;
+.social-media-icon-email div, .pdf-link div {
+  height: 36px;
+  max-width: 36px;
+  margin: 0 1rem;
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   background-color: none;
 }
+.social-media-icon-email h1 {
+  font-size: 1.4rem;
+}
+
 
 
 .profile-summary div {
   padding: 1rem;
 }
+
 
 @media only screen and (orientation: Portrait) and (max-width: 240px) and (max-height: 320px) {
   .profile-name {
@@ -238,6 +262,12 @@ font-weight: bold;
   }
 }
 
+@media only screen and (orientation: Portrait) and (max-width: 320px){
+  .social-media-icon-email h1, .pdf-link {
+  font-size: 1.2rem;
+}
+
+}
 
 
 /* Mobile Landscape */
@@ -284,6 +314,11 @@ font-weight: bold;
    .profile-name {
      font-size: 3rem;
    }
+
+   .social-media-icon-email h1, .pdf-link {
+  font-size: 1.4rem;
+}
+
 }
 
 /* Large Phone Landscape */
@@ -292,9 +327,11 @@ font-weight: bold;
     max-width: 100%;
   }
 
-.profile-summary{
+.profile-summary, .social-media-icon-email h1, .pdf-link{
   font-size: 1.6rem;
 }
+
+
 }
 
 /* Tablet Landscape */
@@ -306,6 +343,9 @@ font-weight: bold;
     font-size: 2rem;
     line-height: 1.5;
   }
+   .social-media-icon-email h1, .pdf-link{
+     font-size: 2rem;
+   }
 }
 
 /* Laptops and Large Tablets */
@@ -322,6 +362,10 @@ font-weight: bold;
 .profile-summary{
   font-size: 2.8rem;
   line-height: 1.5;
+}
+
+.social-media-icon-email h1, .pdf-link {
+  font-size: 2rem;
 }
 }
 </style>
