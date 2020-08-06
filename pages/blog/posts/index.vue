@@ -147,6 +147,11 @@ export default {
   cursor: pointer;
   align-self: center;
 }
+
+.preview-container:hover {
+  transform: scale(1.1);
+}
+
 .preview-thumbnail {
   background-position: top;
   background-size: cover;

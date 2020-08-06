@@ -8,43 +8,51 @@
           rel="noreferrer noopener"
           target="_blank"
           :href="twitter"
-          :style="{
+        >
+        <div :style="{
             backgroundImage: `url(${require('../../assets/images/twitter.svg')})`,
-          }"
-        ></a>
+          }"></div>
+        <h1>ShaelynEOM</h1></a>
         <a
           class="social-media-icon"
           rel="noreferrer noopener"
           target="_blank"
           :href="instagram"
-          :style="{
+          
+        >
+        <div :style="{
             backgroundImage: `url(${require('../../assets/images/instagram.svg')})`,
-          }"
-        ></a>
+          }"></div>
+        <h1>ShaelynEOM</h1></a>
         <a
           class="social-media-icon"
           rel="noreferrer noopener"
           target="_blank"
           :href="linkedin"
-          :style="{
+          
+        >
+                <div :style="{
             backgroundImage: `url(${require('../../assets/images/linkedin.svg')})`,
-          }"
-        ></a>
-        <a
-          class="social-media-icon"
-          rel="noreferrer noopener"
-          target="_blank"
-          :href="`mailto:${gmail}`"
-          :style="{
-            backgroundImage: `url(${require('../../assets/images/gmail.svg')})`,
-          }"
-        ></a>
+          }"></div>
+        <h1>ShaelynOtikor</h1>
+        </a>
       </div>
     </div>
     <div class="summary-container">
       <img class="profile-photo" :src="photo" />
       <div  class="profile-summary">
         <div v-for="(text, index) in richtext" :key="index" v-html="text">{{ summary }}</div>
+         <a
+          class="social-media-icon-email"
+          rel="noreferrer noopener"
+          target="_blank"
+          :href="`mailto:${gmail}`"
+          
+        >
+                        <div :style="{
+            backgroundImage: `url(${require('../../assets/images/gmail.svg')})`,
+          }"></div>
+        <h1>{{gmail}}</h1></a>
         </div>
     </div>
   </section>
@@ -131,15 +139,37 @@ export default {
   align-items: center;
 }
 
+.social-media-container a:hover {
+transform: scale(1.1);
+font-weight: bold;
+}
+
 .social-media-icon {
-  height: 36px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  margin: 0 1rem;
+  
+}
+
+
+
+.social-media-icon div{
+    height: 36px;
   width: 36px;
-  background-repeat: no-repeat;
-  background-size: cover;
+   background-repeat: no-repeat;
+  background-size: contain;
   background-position: center;
   background-color: none;
-  border-radius: 50%;
-  margin: 0 1rem;
+}
+
+.social-media-icon h1 {
+  color: black;
+  font-size: 1rem;
 }
 
 .summary-container {
@@ -169,8 +199,30 @@ export default {
   line-height: 1.2;
   text-align: left;
   border: 1px solid white;
-
+  position: relative;
 }
+
+.social-media-icon-email {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+
+.social-media-icon-email div:hover {
+  transform: scale(1.1);
+}
+.social-media-icon-email div{
+    height: 36px;
+  width: 36px;
+  margin: 1rem;
+   background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: none;
+}
+
 
 .profile-summary div {
   padding: 1rem;

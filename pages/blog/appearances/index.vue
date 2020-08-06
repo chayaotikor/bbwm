@@ -87,6 +87,7 @@ export default {
   position: relative;
 }
 
+
 .line-point {
   width: 100%;
   height: 16px;
@@ -146,6 +147,10 @@ export default {
   cursor: pointer;
   align-self: center;
   padding: 0;
+}
+
+.appearance-container:hover {
+  transform: scale(1.1);
 }
 
 .appearance-thumbnail {

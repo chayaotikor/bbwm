@@ -147,4 +147,11 @@ export default {
   cursor: pointer;
   border: none;
 }
+
+.left-arrow:hover {
+  transform: scale(1.1) rotate(180deg);
+}
+.right-arrow:hover {
+  transform: scale(1.1);
+}
 </style>
