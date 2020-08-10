@@ -70,11 +70,11 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: 2rem;
   border-left: 3px solid white;
   width: 90vw;
   max-width: 1280px;
-  height: 100vh;
+  height: 100%;
 }
 
 .post-container {

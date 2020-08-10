@@ -72,7 +72,7 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: 2rem;
   max-width: 1280px;
   border-left: 3px solid white;
   width: 90vw;

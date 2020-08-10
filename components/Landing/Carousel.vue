@@ -69,13 +69,13 @@ export default {
 .bottom-container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   color: white;
   background: black;
   width: 100%;
-  min-height: 30vh;
+  min-height: 31vh;
   position: relative;
   border-top: 1px solid white;
 }

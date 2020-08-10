@@ -106,12 +106,11 @@ export default {
   flex-flow: column nowrap;
   justify-content: stretch;
   align-items: center;
-  margin-top: 6rem;
   justify-self: center;
   margin-bottom: 0;
   background-color: black;
-  max-width: 100%;
   background: none;
+
 }
 
 .top-bar {
@@ -183,7 +182,7 @@ font-weight: bold;
   max-width: 1440px;
   justify-self: flex-end;
   color: white;
-  height: calc(100vh + 6rem);
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -222,6 +221,7 @@ font-weight: bold;
   color: wheat;
   display: flex;
   align-items: center;
+  padding-bottom: 1rem;
 }
 
 .social-media-icon-email:active, .social-media-icon-email:visited{

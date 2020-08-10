@@ -3,6 +3,7 @@
     <Header />
     <main class="app-container">
     <Nuxt />
+        <footer>Website by Chaya Otikor</footer>
     </main>
   </div>
 </template>
@@ -90,13 +91,24 @@ h1{
   font-family: 'Dosis', sans-serif;
 }
 
+
 .app-container{
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items:flex-start;
+  margin-top: 6rem;
 }
 
 
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: .25rem .5rem;
+  color: white;
+  font-size: .8rem;
+}
 
 
 
