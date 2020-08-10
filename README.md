@@ -1,20 +1,12 @@
-# bbwm
+# Beyond Boundaries | Without Measure
 
-## Build Setup
+*A web application for a social justice themed blog*
 
-```bash
-# install dependencies
-$ yarn install
+---
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## Tech Stack
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+- Vue 
+- Nuxt
+- Storyblok CMS
+- CSS
